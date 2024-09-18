@@ -203,7 +203,7 @@ if PolyaxonServices.is_agent():
     cli.add_command(agent)
 
 try:
-    from haupt.cli.sandbox import sandbox
+    from core.cli.sandbox import sandbox
 
     cli.add_command(sandbox)
 except ImportError:

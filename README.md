@@ -4,21 +4,19 @@
 
 [![Docs](https://img.shields.io/badge/docs-stable-brightgreen.svg?style=flat&longCache=true)](https://polyaxon.com/docs/)
 [![Release](https://img.shields.io/badge/release-v2.4.0-brightgreen.svg?longCache=true)](https://polyaxon.com/docs/releases/2-1/)
-[![GitHub](https://img.shields.io/badge/issue_tracker-github-blue?style=flat&logo=github&longCache=true)](https://github.com/polyaxon/polyaxon/issues)
+[![GitHub](https://img.shields.io/badge/issue_tracker-github-blue?style=flat&logo=github&longCache=true)](https://github.com/cernide/cernide/issues)
 [![GitHub](https://img.shields.io/badge/roadmap-github-blue?style=flat&logo=github&longCache=true)](https://github.com/orgs/polyaxon/projects/5)
 
-[![CLI](https://github.com/polyaxon/cli/actions/workflows/cli.yml/badge.svg)](https://github.com/polyaxon/cli/actions/workflows/cli.yml)
-[![Polyaxon](https://github.com/polyaxon/polyaxon/actions/workflows/cli.yml/badge.svg)](https://github.com/polyaxon/polyaxon/actions/workflows/cli.yml)
-[![Haupt](https://github.com/polyaxon/polyaxon/actions/workflows/haupt.yml/badge.svg)](https://github.com/polyaxon/polyaxon/actions/workflows/haupt.yml)
-[![Hypertune](https://github.com/polyaxon/polyaxon/actions/workflows/hypertune.yml/badge.svg)](https://github.com/polyaxon/polyaxon/actions/workflows/hypertune.yml)
-[![Traceml](https://github.com/polyaxon/polyaxon/actions/workflows/traceml.yml/badge.svg)](https://github.com/polyaxon/polyaxon/actions/workflows/traceml.yml)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/90c05b6b112548c1a88b950beceacb69)](https://www.codacy.com/app/polyaxon/polyaxon?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=polyaxon/polyaxon&amp;utm_campaign=Badge_Grade)
-
+[![CLI](https://github.com/cernide/cli/actions/workflows/cli.yml/badge.svg)](https://github.com/cernide/cli/actions/workflows/cli.yml)
+[![Polyaxon](https://github.com/cernide/cernide/actions/workflows/cli.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/cli.yml)
+[![Core](https://github.com/cernide/cernide/actions/workflows/core.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/core.yml)
+[![Hypertune](https://github.com/cernide/cernide/actions/workflows/hypertune.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/hypertune.yml)
+[![Traceml](https://github.com/cernide/cernide/actions/workflows/traceml.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/traceml.yml)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/90c05b6b112548c1a88b950beceacb69)](https://www.codacy.com/app/polyaxon/polyaxon?utm_source=github.com&utm_medium=referral&utm_content=polyaxon/polyaxon&utm_campaign=Badge_Grade)
 
 <a href="https://polyaxon.com"><img src="https://raw.githubusercontent.com/polyaxon/polyaxon/master/artifacts/logo/vector/primary-white-default-monochrome.svg" width="125" height="125" align="right" /></a>
 
 # Reproduce, Automate, Scale your data science
-
 
 Welcome to Polyaxon, a platform for building, training, and monitoring large scale deep learning applications.
 We are making a system to solve reproducibility, automation, and scalability for machine learning applications.
@@ -37,14 +35,14 @@ Polyaxon makes it faster, easier, and more efficient to develop deep learning ap
 
 #### TL;DR;
 
-* Install CLI
+-   Install CLI
 
     ```bash
     # Install Polyaxon CLI
     $ pip install -U polyaxon
     ```
 
- * Create a deployment
+-   Create a deployment
 
     ```bash
     # Create a namespace
@@ -66,21 +64,21 @@ Please check [polyaxon installation guide](https://polyaxon.com/docs/setup/)
 
 #### TL;DR;
 
- * Start a project
+-   Start a project
 
     ```bash
     # Create a project
     $ polyaxon project create --name=quick-start --description='Polyaxon quick start.'
     ```
 
- * Train and track logs & resources
+-   Train and track logs & resources
 
     ```bash
     # Upload code and start experiments
     $ polyaxon run -f experiment.yaml -u -l
     ```
 
- * Dashboard
+-   Dashboard
 
     ```bash
     # Start Polyaxon dashboard
@@ -96,7 +94,7 @@ Please check [polyaxon installation guide](https://polyaxon.com/docs/setup/)
 </p>
 <br>
 
- * Notebook
+-   Notebook
     ```bash
     # Start Jupyter notebook for your project
     $ polyaxon run --hub notebook
@@ -108,7 +106,7 @@ Please check [polyaxon installation guide](https://polyaxon.com/docs/setup/)
 </p>
 <br>
 
- * Tensorboard
+-   Tensorboard
     ```bash
     # Start TensorBoard for a run's output
     $ polyaxon run --hub tensorboard -P uuid=UUID
@@ -130,24 +128,24 @@ and update your polyaxonfile.
 
 Here are some examples of using distributed training:
 
- * [Distributed Tensorflow](https://polyaxon.com/docs/experimentation/distributed/tf-jobs/)
- * [Distributed Pytorch](https://polyaxon.com/docs/experimentation/distributed/pytorch-jobs/)
- * [Distributed MPI](https://polyaxon.com/docs/experimentation/distributed/mpi-jobs/)
- * [Horovod](https://polyaxon.com/integrations/horovod/)
- * [Ray](https://polyaxon.com/docs/experimentation/distributed/ray-jobs/)
- * [Dask](https://polyaxon.com/docs/experimentation/distributed/dask-jobs/)
+-   [Distributed Tensorflow](https://polyaxon.com/docs/experimentation/distributed/tf-jobs/)
+-   [Distributed Pytorch](https://polyaxon.com/docs/experimentation/distributed/pytorch-jobs/)
+-   [Distributed MPI](https://polyaxon.com/docs/experimentation/distributed/mpi-jobs/)
+-   [Horovod](https://polyaxon.com/integrations/horovod/)
+-   [Ray](https://polyaxon.com/docs/experimentation/distributed/ray-jobs/)
+-   [Dask](https://polyaxon.com/docs/experimentation/distributed/dask-jobs/)
 
 # Hyperparameters tuning
 
 Polyaxon has a concept for suggesting hyperparameters and managing their results very similar to Google Vizier called experiment groups.
 An experiment group in Polyaxon defines a search algorithm, a search space, and a model to train.
 
- * [Grid search](https://polyaxon.com/docs/automation/optimization-engine/grid-search/)
- * [Random search](https://polyaxon.com/docs/automation/optimization-engine/random-search/)
- * [Hyperband](https://polyaxon.com/docs/automation/optimization-engine/hyperband/)
- * [Bayesian Optimization](https://polyaxon.com/docs/automation/optimization-engine/bayesian-optimization/)
- * [Hyperopt](https://polyaxon.com/docs/automation/optimization-engine/hyperopt/)
- * [Custom Iterative Optimization](https://polyaxon.com/docs/automation/optimization-engine/iterative/)
+-   [Grid search](https://polyaxon.com/docs/automation/optimization-engine/grid-search/)
+-   [Random search](https://polyaxon.com/docs/automation/optimization-engine/random-search/)
+-   [Hyperband](https://polyaxon.com/docs/automation/optimization-engine/hyperband/)
+-   [Bayesian Optimization](https://polyaxon.com/docs/automation/optimization-engine/bayesian-optimization/)
+-   [Hyperopt](https://polyaxon.com/docs/automation/optimization-engine/hyperopt/)
+-   [Custom Iterative Optimization](https://polyaxon.com/docs/automation/optimization-engine/iterative/)
 
 # Parallel executions
 
@@ -158,7 +156,6 @@ You can run your processing or model training jobs in parallel, Polyaxon provide
 [Polyaxon DAGs](https://polyaxon.com/docs/automation/flow-engine/) is a tool that provides container-native engine for running machine learning pipelines.
 A DAG manages multiple operations with dependencies. Each operation is defined by a component runtime.
 This means that operations in a DAG can be jobs, services, distributed jobs, parallel executions, or nested DAGs.
-
 
 # Architecture
 
@@ -184,8 +181,7 @@ Polyaxon is stable and it's running in production mode at many startups and Fort
 
 # Contributions
 
-Please follow the contribution guide line: *[Contribute to Polyaxon](CONTRIBUTING.md)*.
-
+Please follow the contribution guide line: _[Contribute to Polyaxon](CONTRIBUTING.md)_.
 
 # Research
 

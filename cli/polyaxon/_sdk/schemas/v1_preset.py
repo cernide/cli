@@ -21,6 +21,7 @@ class V1Preset(BaseAllowSchemaModel):
     tags: Optional[List[StrictStr]]
     created_at: Optional[datetime.datetime]
     updated_at: Optional[datetime.datetime]
+    frozen: Optional[bool]
     live_state: Optional[int]
     content: Optional[StrictStr]
     settings: Optional[V1PresetSettings]

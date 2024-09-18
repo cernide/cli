@@ -130,7 +130,8 @@ class DeployConfigManager:
         Printer.success("Docker is installed")
 
         if not self.compose.check():
-            raise PolyaxonException("Docker Compose is required to run this command.")
+            raise PolyaxonException(
+                "Docker Compose is required to run this command.")
         Printer.success("Docker Compose is installed")
 
         # Check that .polyaxon/.compose is set and up-to date
@@ -153,7 +154,8 @@ class DeployConfigManager:
         """Add platform specific checks"""
         if not self.is_valid:
             raise PolyaxonException(
-                "Deployment type `{}` not supported".format(self.deployment_type)
+                "Deployment type `{}` not supported".format(
+                    self.deployment_type)
             )
         check = False
         if self.is_kubernetes:
@@ -184,7 +186,8 @@ class DeployConfigManager:
                     stream=settings.CLIENT_CONFIG.debug,
                 )
                 click.echo(stdout)
-                Printer.success(f"Namespace `{self.deployment_namespace}` is ready")
+                Printer.success(
+                    f"Namespace `{self.deployment_namespace}` is ready")
         except PolyaxonOperatorException:
             return
 
@@ -198,7 +201,8 @@ class DeployConfigManager:
                     is_json=True,
                     stream=settings.CLIENT_CONFIG.debug,
                 )
-                Printer.success(f"Namespace `{self.deployment_namespace}` is ready")
+                Printer.success(
+                    f"Namespace `{self.deployment_namespace}` is ready")
                 return stdout
             except PolyaxonOperatorException:
                 return None
@@ -218,10 +222,12 @@ class DeployConfigManager:
         if self.type in [DeploymentTypes.MICRO_K8S, DeploymentTypes.MINIKUBE]:
             args += [
                 "--set",
-                "gateway.service.type=NodePort,deploymentType={}".format(self.type),
+                "gateway.service.type=NodePort,deploymentType={}".format(
+                    self.type),
             ]
         if self.deployment_version:
-            Printer.info("Deployment version: `{}`".format(self.deployment_version))
+            Printer.info("Deployment version: `{}`".format(
+                self.deployment_version))
             if self.deployment_version != "latest":
                 args += ["--version", self.deployment_version]
         if self.dry_run:
@@ -230,7 +236,8 @@ class DeployConfigManager:
         with Printer.console.status("Running final checks before ..."):
             time.sleep(self._SLEEP_TIME)
         with Printer.console.status("Running install command ..."):
-            stdout = self.helm.execute(args=args, stream=settings.CLIENT_CONFIG.debug)
+            stdout = self.helm.execute(
+                args=args, stream=settings.CLIENT_CONFIG.debug)
             Printer.success("Install command finished")
         click.echo(stdout)
         Printer.success("Deployment finished.")
@@ -242,7 +249,7 @@ class DeployConfigManager:
         path = "/".join(path.split("/")[:-1])
         # Fetch docker-compose
         Transport().download(
-            url="https://github.com/polyaxon/polyaxon-compose/archive/master.tar.gz",
+            url="https://github.com/cernide/cernide-compose/archive/master.tar.gz",
             filename=path + "/file",
             untar=True,
             delete_tar=True,
@@ -256,7 +263,8 @@ class DeployConfigManager:
         shutil.copy(
             path + "/polyaxon-compose-master/components.env", path + "/components.env"
         )
-        shutil.copy(path + "/polyaxon-compose-master/base.env", path + "/base.env")
+        shutil.copy(path + "/polyaxon-compose-master/base.env",
+                    path + "/base.env")
         shutil.rmtree(path + "/polyaxon-compose-master/")
         # Generate env from config
         ComposeConfigManager.set_config(self.compose.generate_env(self.config))
@@ -283,7 +291,8 @@ class DeployConfigManager:
         """Install polyaxon using the current config to the correct platform."""
         if not self.is_valid:
             raise PolyaxonException(
-                "Deployment type `{}` not supported".format(self.deployment_type)
+                "Deployment type `{}` not supported".format(
+                    self.deployment_type)
             )
 
         if self.is_kubernetes:
@@ -298,9 +307,11 @@ class DeployConfigManager:
     def upgrade_on_kubernetes(self):
         Printer.print("Running checks for upgrade command ...")
         if self.release_name:
-            Printer.info("Deployment release name: `{}`".format(self.release_name))
+            Printer.info(
+                "Deployment release name: `{}`".format(self.release_name))
         if self.deployment_namespace:
-            Printer.info("Deployment namespace: `{}`".format(self.deployment_namespace))
+            Printer.info("Deployment namespace: `{}`".format(
+                self.deployment_namespace))
         self._check_namespace()
         args = ["upgrade", self.release_name]
         if self.manager_path:
@@ -315,10 +326,12 @@ class DeployConfigManager:
         ]:
             args += [
                 "--set",
-                "gateway.service.type=NodePort,deploymentType={}".format(self.type),
+                "gateway.service.type=NodePort,deploymentType={}".format(
+                    self.type),
             ]
         if self.deployment_version:
-            Printer.info("Deployment version: `{}`".format(self.deployment_version))
+            Printer.info("Deployment version: `{}`".format(
+                self.deployment_version))
             if self.deployment_version != "latest":
                 args += ["--version", self.deployment_version]
         args += ["--namespace={}".format(self.deployment_namespace)]
@@ -328,7 +341,8 @@ class DeployConfigManager:
         with Printer.console.status("Running final checks ..."):
             time.sleep(self._SLEEP_TIME)
         with Printer.console.status("Running upgrade command ..."):
-            stdout = self.helm.execute(args=args, stream=settings.CLIENT_CONFIG.debug)
+            stdout = self.helm.execute(
+                args=args, stream=settings.CLIENT_CONFIG.debug)
             Printer.success("Upgrade command finished")
         click.echo(stdout)
         Printer.success("Deployment upgraded.")
@@ -346,7 +360,8 @@ class DeployConfigManager:
         """Upgrade deployment."""
         if not self.is_valid:
             raise PolyaxonException(
-                "Deployment type `{}` not supported".format(self.deployment_type)
+                "Deployment type `{}` not supported".format(
+                    self.deployment_type)
             )
 
         if self.is_kubernetes:
@@ -382,7 +397,8 @@ class DeployConfigManager:
         """Teardown Polyaxon."""
         if not self.is_valid:
             raise PolyaxonException(
-                "Deployment type `{}` not supported".format(self.deployment_type)
+                "Deployment type `{}` not supported".format(
+                    self.deployment_type)
             )
 
         if self.is_kubernetes:

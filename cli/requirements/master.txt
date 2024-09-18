@@ -1,2 +1,2 @@
--e git+https://github.com/polyaxon/traceml.git@master#egg=traceml&subdirectory=traceml
--e git+https://github.com/polyaxon/hypertune.git@master#egg=hypertune&subdirectory=hypertune
+-e git+https://github.com/cernide/traceml.git@master#egg=traceml&subdirectory=traceml
+-e git+https://github.com/cernide/hypertune.git@master#egg=hypertune&subdirectory=hypertune
