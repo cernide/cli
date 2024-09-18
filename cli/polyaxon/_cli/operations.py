@@ -100,7 +100,8 @@ def handle_run_statuses(status, conditions, table):
 
     Printer.print(
         "Latest status: {}".format(
-            Printer.add_status_color({"status": status}, status_key="status")["status"]
+            Printer.add_status_color(
+                {"status": status}, status_key="status")["status"]
         )
     )
 
@@ -292,7 +293,8 @@ def ls(
             sys.exit(1)
         results = []
         for uid in os.listdir(offline_path):
-            run_path = "{}/{}/{}".format(offline_path, uid, ctx_paths.CONTEXT_LOCAL_RUN)
+            run_path = "{}/{}/{}".format(offline_path,
+                                         uid, ctx_paths.CONTEXT_LOCAL_RUN)
             if os.path.exists(run_path):
                 results.append(RunConfigManager.read_from_path(run_path))
             else:
@@ -311,22 +313,26 @@ def ls(
             )
         except (ApiException, HTTPError) as e:
             handle_cli_error(
-                e, message="Could not get runs for project `{}`.".format(project_name)
+                e, message="Could not get runs for project `{}`.".format(
+                    project_name)
             )
             sys.exit(1)
 
         if output:
-            config = polyaxon_client.client.sanitize_for_serialization(response)
+            config = polyaxon_client.client.sanitize_for_serialization(
+                response)
             handle_output(config, output)
             return
         meta = get_meta_response(response)
         if meta:
-            Printer.heading("Runs for project `{}/{}`.".format(owner, project_name))
+            Printer.heading(
+                "Runs for project `{}/{}`.".format(owner, project_name))
             Printer.heading("Navigation:")
             Printer.dict_tabulate(meta)
         else:
             Printer.heading(
-                "No runs found for project `{}/{}`.".format(owner, project_name)
+                "No runs found for project `{}/{}`.".format(
+                    owner, project_name)
             )
 
         results = response.results
@@ -384,7 +390,8 @@ def ls(
             Printer.heading("Displayed columns ({}):".format(len(all_columns)))
             Printer.print(" | ".join(all_columns))
             Printer.info("\nTips:")
-            Printer.tip("  1. You can enable the inputs/outputs columns using `-io`")
+            Printer.tip(
+                "  1. You can enable the inputs/outputs columns using `-io`")
             Printer.tip(
                 "  2. You can select the columns to show using `-c col1,cl2,col3,...`"
             )
@@ -434,7 +441,8 @@ def get(ctx, project, uid, offline, path, output):
         offline_path = ctx_paths.get_offline_path(
             entity_value=uid, entity_kind=V1ProjectFeature.RUNTIME, path=path
         )
-        offline_path = "{}/{}".format(offline_path, ctx_paths.CONTEXT_LOCAL_RUN)
+        offline_path = "{}/{}".format(offline_path,
+                                      ctx_paths.CONTEXT_LOCAL_RUN)
         if not os.path.exists(offline_path):
             Printer.error(
                 f"Could not get offline run, the path `{offline_path}` "
@@ -469,7 +477,8 @@ def get(ctx, project, uid, offline, path, output):
             if output:
                 run_url = get_dashboard_url(
                     subpath="{}/runs/{}".format(
-                        get_project_subpath_url(owner, team, project_name), run_uuid
+                        get_project_subpath_url(
+                            owner, team, project_name), run_uuid
                     )
                 )
                 config["url"] = run_url
@@ -525,7 +534,8 @@ def delete(ctx, project, uid, yes, offline, path):
         offline_path = ctx_paths.get_offline_path(
             entity_value=uid, entity_kind=V1ProjectFeature.RUNTIME, path=path
         )
-        offline_path = "{}/{}".format(offline_path, ctx_paths.CONTEXT_LOCAL_RUN)
+        offline_path = "{}/{}".format(offline_path,
+                                      ctx_paths.CONTEXT_LOCAL_RUN)
         if not os.path.exists(offline_path):
             Printer.error(
                 f"Could not get offline run, the path `{offline_path}` "
@@ -565,7 +575,8 @@ def delete(ctx, project, uid, yes, offline, path):
         # Purge caching
         RunConfigManager.purge()
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not delete run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not delete run `{}`.".format(run_uuid))
         sys.exit(1)
 
     Printer.success("Run `{}` was delete successfully".format(run_uuid))
@@ -617,7 +628,8 @@ def update(ctx, project, uid, name, description, tags, offline, path):
         offline_path = ctx_paths.get_offline_path(
             entity_value=uid, entity_kind=V1ProjectFeature.RUNTIME, path=path
         )
-        offline_path = "{}/{}".format(offline_path, ctx_paths.CONTEXT_LOCAL_RUN)
+        offline_path = "{}/{}".format(offline_path,
+                                      ctx_paths.CONTEXT_LOCAL_RUN)
         if not os.path.exists(offline_path):
             Printer.error(
                 f"Could not get offline run, the path `{offline_path}` "
@@ -652,7 +664,8 @@ def update(ctx, project, uid, name, description, tags, offline, path):
             )
             response = polyaxon_client.update(update_dict)
         except (ApiException, HTTPError) as e:
-            handle_cli_error(e, message="Could not update run `{}`.".format(run_uuid))
+            handle_cli_error(
+                e, message="Could not update run `{}`.".format(run_uuid))
             sys.exit(1)
 
     Printer.success("Run `{}` was updated.".format(run_uuid))
@@ -692,7 +705,8 @@ def approve(ctx, project, uid):
         )
         polyaxon_client.approve()
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not approve run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not approve run `{}`.".format(run_uuid))
         sys.exit(1)
 
     Printer.success("Run `{}` was approved".format(run_uuid))
@@ -744,7 +758,8 @@ def stop(ctx, project, uid, yes):
         )
         polyaxon_client.stop()
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not stop run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not stop run `{}`.".format(run_uuid))
         sys.exit(1)
 
     Printer.success("Run `{}` is being stopped ...".format(run_uuid))
@@ -796,7 +811,8 @@ def skip(ctx, project, uid, yes):
         )
         polyaxon_client.skip()
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not skip run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not skip run `{}`.".format(run_uuid))
         sys.exit(1)
 
     Printer.success("Run `{}` is skipped.".format(run_uuid))
@@ -878,7 +894,8 @@ def restart(
     """
     content = None
     if polyaxonfile:
-        content = OperationSpecification.read(polyaxonfile, is_preset=True).to_json()
+        content = OperationSpecification.read(
+            polyaxonfile, is_preset=True).to_json()
 
     owner, _, project_name, run_uuid = get_project_run_or_local(
         project or ctx.obj.get("project"),
@@ -908,7 +925,8 @@ def restart(
             )
         )
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not restart run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not restart run `{}`.".format(run_uuid))
         sys.exit(1)
 
 
@@ -963,7 +981,8 @@ def resume(
     """
     content = None
     if polyaxonfile:
-        content = OperationSpecification.read(polyaxonfile, is_preset=True).to_json()
+        content = OperationSpecification.read(
+            polyaxonfile, is_preset=True).to_json()
 
     owner, _, project_name, run_uuid = get_project_run_or_local(
         project or ctx.obj.get("project"),
@@ -986,7 +1005,8 @@ def resume(
         )
         Printer.success("Run was resumed with uid {}".format(response.uuid))
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not resume run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not resume run `{}`.".format(run_uuid))
         sys.exit(1)
 
 
@@ -1023,7 +1043,8 @@ def invalidate(ctx, project, uid):
         response = polyaxon_client.invalidate()
         Printer.success("Run `{}` was invalidated".format(response.uuid))
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not invalidate run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not invalidate run `{}`.".format(run_uuid))
         sys.exit(1)
 
 
@@ -1098,7 +1119,8 @@ def execute(ctx, project, uid, executor):
                     has_children = False
             return
         else:
-            result = executor.create_from_run(response, default_auth=not is_in_ce())
+            result = executor.create_from_run(
+                response, default_auth=not is_in_ce())
         if result["status"] == V1Statuses.SUCCEEDED:
             run_client.log_succeeded(
                 reason="CliDockerExecutor", message="Operation was succeeded"
@@ -1186,7 +1208,8 @@ def execute(ctx, project, uid, executor):
                     has_children = False
             return
         else:
-            result = executor.create_from_run(response, default_auth=not is_in_ce())
+            result = executor.create_from_run(
+                response, default_auth=not is_in_ce())
         if result["status"] == V1Statuses.SUCCEEDED:
             run_client.log_succeeded(
                 reason="CliProcessExecutor", message="Operation was succeeded"
@@ -1212,7 +1235,8 @@ def execute(ctx, project, uid, executor):
         )
         polyaxon_client.refresh_data()
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not execute run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not execute run `{}`.".format(run_uuid))
         sys.exit(1)
 
     executor = executor or ctx.obj.get("executor") or RunnerKind.DOCKER
@@ -1236,7 +1260,8 @@ def execute(ctx, project, uid, executor):
                 client.refresh_data()
             except (ApiException, HTTPError) as e:
                 handle_cli_error(
-                    e, message="Could not approve run `{}`.".format(response.uuid)
+                    e, message="Could not approve run `{}`.".format(
+                        response.uuid)
                 )
                 sys.exit(1)
 
@@ -1300,7 +1325,8 @@ def statuses(ctx, project, uid, watch, offline, path):
         offline_path = ctx_paths.get_offline_path(
             entity_value=uid, entity_kind=V1ProjectFeature.RUNTIME, path=path
         )
-        offline_path = "{}/{}".format(offline_path, ctx_paths.CONTEXT_LOCAL_RUN)
+        offline_path = "{}/{}".format(offline_path,
+                                      ctx_paths.CONTEXT_LOCAL_RUN)
         if not os.path.exists(offline_path):
             Printer.error(
                 f"Could not get offline run, the path `{offline_path}` "
@@ -1343,7 +1369,8 @@ def statuses(ctx, project, uid, watch, offline, path):
                         live.update(table)
             except (ApiException, HTTPError, PolyaxonClientException) as e:
                 handle_cli_error(
-                    e, message="Could get status for run `{}`.".format(run_uuid)
+                    e, message="Could get status for run `{}`.".format(
+                        run_uuid)
                 )
                 sys.exit(1)
     else:
@@ -1450,7 +1477,8 @@ def logs(ctx, project, uid, follow, hide_time, all_containers, all_info, offline
             entity_value=uid, entity_kind=V1ProjectFeature.RUNTIME, path=path
         )
         logs_path = "{}/plxlogs".format(offline_path)
-        offline_path = "{}/{}".format(offline_path, ctx_paths.CONTEXT_LOCAL_RUN)
+        offline_path = "{}/{}".format(offline_path,
+                                      ctx_paths.CONTEXT_LOCAL_RUN)
         if not os.path.exists(offline_path):
             Printer.error(
                 f"Could not get offline run, the path `{offline_path}` "
@@ -1466,7 +1494,7 @@ def logs(ctx, project, uid, follow, hide_time, all_containers, all_info, offline
             )
 
         try:
-            from traceml.logging.streamer import get_logs_streamer, load_logs_from_path
+            from tracer.logging.streamer import get_logs_streamer, load_logs_from_path
 
             load_logs_from_path(
                 logs_path=logs_path,
@@ -1541,7 +1569,8 @@ def inspect(ctx, project, uid):
         )
         handle_output(client.inspect(), output="json")
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not inspect the run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not inspect the run `{}`.".format(run_uuid))
         sys.exit(1)
 
 
@@ -1603,11 +1632,13 @@ def shell(ctx, project, uid, command, pod, container):
     Printer.success("Starting a new shell session...")
     try:
         pty = PseudoTerminal(
-            client_shell=client.shell(command=command, pod=pod, container=container)
+            client_shell=client.shell(
+                command=command, pod=pod, container=container)
         )
         pty.start(sys.argv[1:])
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not inspect the run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not inspect the run `{}`.".format(run_uuid))
         sys.exit(1)
     Printer.header("Disconnecting...")
 
@@ -1715,11 +1746,13 @@ def artifacts(
                 path="", path_to=path_to, untar=not no_untar
             )
             Printer.success(
-                "All run's artifacts downloaded. Path: {}".format(download_path)
+                "All run's artifacts downloaded. Path: {}".format(
+                    download_path)
             )
         except (ApiException, HTTPError) as e:
             handle_cli_error(
-                e, message="Could not download artifacts for run `{}`.".format(run_uuid)
+                e, message="Could not download artifacts for run `{}`.".format(
+                    run_uuid)
             )
             sys.exit(1)
 
@@ -1733,7 +1766,8 @@ def artifacts(
                 path=f,
                 path_to=path_to,
             )
-            Printer.success("File path {} downloaded to {}".format(f, download_path))
+            Printer.success(
+                "File path {} downloaded to {}".format(f, download_path))
         except (ApiException, HTTPError) as e:
             handle_cli_error(
                 e,
@@ -1751,7 +1785,8 @@ def artifacts(
             download_path = client.download_artifacts(
                 path=f, path_to=path_to, untar=not no_untar
             )
-            Printer.success("Dir path {} downloaded to {}".format(f, download_path))
+            Printer.success(
+                "Dir path {} downloaded to {}".format(f, download_path))
         except (ApiException, HTTPError) as e:
             handle_cli_error(
                 e,
@@ -1768,7 +1803,8 @@ def artifacts(
     if lineage_names:
         query = "name: {}".format("|".join(lineage_names))
         try:
-            lineages += client.get_artifacts_lineage(query=query, limit=1000).results
+            lineages += client.get_artifacts_lineage(
+                query=query, limit=1000).results
         except (ApiException, HTTPError) as e:
             handle_cli_error(
                 e,
@@ -1780,7 +1816,8 @@ def artifacts(
     if lineage_kinds:
         query = "kind: {}".format("|".join(lineage_kinds))
         try:
-            lineages += client.get_artifacts_lineage(query=query, limit=1000).results
+            lineages += client.get_artifacts_lineage(
+                query=query, limit=1000).results
         except (ApiException, HTTPError) as e:
             handle_cli_error(
                 e,
@@ -1791,7 +1828,8 @@ def artifacts(
             )
 
     if lineages:
-        Printer.print("Loaded artifact lineage information for run {}".format(run_uuid))
+        Printer.print(
+            "Loaded artifact lineage information for run {}".format(run_uuid))
 
     # To avoid duplicates
     lineage_keys = set([])
@@ -1808,7 +1846,8 @@ def artifacts(
                 lineage=lineage, path_to=path_to
             )
             Printer.success(
-                "Assets for {} downloaded to {}".format(lineage_def, download_path)
+                "Assets for {} downloaded to {}".format(
+                    lineage_def, download_path)
             )
         except (ApiException, HTTPError) as e:
             handle_cli_error(
@@ -1905,7 +1944,8 @@ def upload(ctx, project, uid, path_from, path_to, sync_failure, agent):
         PolyaxonClientException,
     ) as e:
         handle_cli_error(
-            e, message="Could not upload artifacts for run `{}`".format(run_uuid)
+            e, message="Could not upload artifacts for run `{}`".format(
+                run_uuid)
         )
         sys.exit(1)
 
@@ -1962,7 +2002,8 @@ def transfer(ctx, project, uid, to_project):
         )
         polyaxon_client.transfer(to_project=to_project)
     except (ApiException, HTTPError) as e:
-        handle_cli_error(e, message="Could not transfer run `{}`.".format(run_uuid))
+        handle_cli_error(
+            e, message="Could not transfer run `{}`.".format(run_uuid))
         sys.exit(1)
 
     Printer.success("Run `{}` was transferred.".format(run_uuid))
@@ -2006,7 +2047,8 @@ def dashboard(ctx, project, uid, yes, url, offline, path, server_config):
         offline_path = ctx_paths.get_offline_path(
             entity_value=uid, entity_kind=V1ProjectFeature.RUNTIME, path=path
         )
-        offline_path = "{}/{}".format(offline_path, ctx_paths.CONTEXT_LOCAL_RUN)
+        offline_path = "{}/{}".format(offline_path,
+                                      ctx_paths.CONTEXT_LOCAL_RUN)
         if not os.path.exists(offline_path):
             Printer.error(
                 f"Could not get offline run, the path `{offline_path}` "
@@ -2138,7 +2180,8 @@ def service(ctx, project, uid, yes, external, url):
     if url:
         Printer.header("The service will be available at: {}".format(run_url))
         Printer.header(
-            "You can also view it in an external link at: {}".format(external_run_url)
+            "You can also view it in an external link at: {}".format(
+                external_run_url)
         )
         sys.exit(0)
     if not yes:
@@ -2239,7 +2282,8 @@ def pull(
             PolyaxonShouldExitError,
             PolyaxonClientException,
         ) as e:
-            handle_cli_error(e, message="Could not pull run `{}`.".format(run_uuid))
+            handle_cli_error(
+                e, message="Could not pull run `{}`.".format(run_uuid))
 
     if all_runs or any([query, limit, offset]):
         limit = 1000 if all_runs else limit
@@ -2254,7 +2298,8 @@ def pull(
             ).results
         except (ApiException, HTTPError) as e:
             handle_cli_error(
-                e, message="Could not get runs for project `{}`.".format(project_name)
+                e, message="Could not get runs for project `{}`.".format(
+                    project_name)
             )
             sys.exit(1)
         Printer.header(f"Pulling remote runs (total: {len(runs)})...")

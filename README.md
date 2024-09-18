@@ -11,7 +11,7 @@
 [![Polyaxon](https://github.com/cernide/cernide/actions/workflows/cli.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/cli.yml)
 [![Core](https://github.com/cernide/cernide/actions/workflows/core.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/core.yml)
 [![Hypertuner](https://github.com/cernide/cernide/actions/workflows/hypertuner.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/hypertuner.yml)
-[![Traceml](https://github.com/cernide/cernide/actions/workflows/traceml.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/traceml.yml)
+[![Tracer](https://github.com/cernide/cernide/actions/workflows/tracer.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/tracer.yml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/90c05b6b112548c1a88b950beceacb69)](https://www.codacy.com/app/polyaxon/polyaxon?utm_source=github.com&utm_medium=referral&utm_content=polyaxon/polyaxon&utm_campaign=Badge_Grade)
 
 <a href="https://polyaxon.com"><img src="https://raw.githubusercontent.com/polyaxon/polyaxon/master/artifacts/logo/vector/primary-white-default-monochrome.svg" width="125" height="125" align="right" /></a>

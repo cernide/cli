@@ -7,7 +7,7 @@ from clipped.config.schema import BaseAllowSchemaModel
 from clipped.types.uuids import UUIDStr
 
 from polyaxon._sdk.schemas.v1_search_spec import V1SearchSpec
-from traceml.events.schemas import SearchView
+from tracer.events.schemas import SearchView
 
 
 class V1Search(BaseAllowSchemaModel):

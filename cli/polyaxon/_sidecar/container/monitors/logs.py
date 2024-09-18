@@ -10,7 +10,7 @@ from kubernetes_asyncio.client.models import V1Pod
 from polyaxon._contexts import paths as ctx_paths
 from polyaxon._k8s.logging.async_monitor import query_k8s_pod_logs
 from polyaxon._k8s.manager.async_manager import AsyncK8sManager
-from traceml.logging import V1Logs
+from tracer.logging import V1Logs
 
 
 async def sync_logs(

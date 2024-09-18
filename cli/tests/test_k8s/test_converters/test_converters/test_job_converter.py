@@ -20,7 +20,7 @@ from polyaxon._schemas.types import (
 )
 from polyaxon._services.values import PolyaxonServices
 from tests.test_k8s.test_converters.base import BaseConverterTest
-from traceml.artifacts import V1ArtifactKind
+from tracer.artifacts import V1ArtifactKind
 
 
 class TestJobConverter(BaseConverterTest):
@@ -72,7 +72,8 @@ class TestJobConverter(BaseConverterTest):
         containers = self.converter.get_init_containers(
             polyaxon_init=V1PolyaxonInitContainer(image="foo/foo"),
             plugins=V1Plugins.get_or_create(
-                V1Plugins(collect_logs=False, collect_artifacts=False, auth=True)
+                V1Plugins(collect_logs=False,
+                          collect_artifacts=False, auth=True)
             ),
             artifacts_store=None,
             init_connections=None,
@@ -206,7 +207,8 @@ class TestJobConverter(BaseConverterTest):
 
         containers = self.converter.get_init_containers(
             plugins=V1Plugins.get_or_create(
-                V1Plugins(collect_artifacts=True, collect_logs=False, auth=True)
+                V1Plugins(collect_artifacts=True,
+                          collect_logs=False, auth=True)
             ),
             artifacts_store=store,
             init_connections=[
@@ -369,8 +371,10 @@ class TestJobConverter(BaseConverterTest):
             schema_=V1BucketConnection(bucket="s3://foo"),
         )
         uuids = [uuid.uuid4(), uuid.uuid4()]
-        tb_args1 = V1TensorboardType(port=8000, uuids=uuids, plugins="plug1,plug2")
-        tb_args2 = V1TensorboardType(port=8000, uuids=uuids[0].hex, use_names=True)
+        tb_args1 = V1TensorboardType(
+            port=8000, uuids=uuids, plugins="plug1,plug2")
+        tb_args2 = V1TensorboardType(
+            port=8000, uuids=uuids[0].hex, use_names=True)
         containers = self.converter.get_init_containers(
             plugins=None,
             artifacts_store=store,
@@ -469,7 +473,8 @@ class TestJobConverter(BaseConverterTest):
         # With context
         containers = self.converter.get_init_containers(
             plugins=V1Plugins.get_or_create(
-                V1Plugins(collect_artifacts=True, collect_logs=False, auth=True)
+                V1Plugins(collect_artifacts=True,
+                          collect_logs=False, auth=True)
             ),
             artifacts_store=store,
             init_connections=[],

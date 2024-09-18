@@ -23,7 +23,7 @@ from polyaxon._env_vars.keys import (
 )
 from polyaxon._schemas.lifecycle import V1Statuses
 from polyaxon.exceptions import PolyaxonContainerException
-from traceml.artifacts import V1ArtifactKind, V1RunArtifact
+from tracer.artifacts import V1ArtifactKind, V1RunArtifact
 
 
 def has_cred_access() -> bool:
@@ -153,7 +153,8 @@ def create_code_repo(
                 message="Error parsing git url. "
                 "Please check the git init container's logs for more details.",
             )
-        raise PolyaxonContainerException("Error parsing url: {}.".format(url)) from e
+        raise PolyaxonContainerException(
+            "Error parsing url: {}.".format(url)) from e
 
     try:
         if flags and "--experimental-fetch" in flags:

@@ -14,7 +14,7 @@ from polyaxon._sdk.schemas.v1_agent_status_body_request import V1AgentStatusBody
 from polyaxon._sdk.schemas.v1_list_agents_response import V1ListAgentsResponse
 from polyaxon._sdk.schemas.v1_token import V1Token
 from polyaxon.exceptions import ApiTypeError
-from traceml.logging import V1Logs
+from tracer.logging import V1Logs
 
 
 class AgentsV1Api(BaseApi):
@@ -546,7 +546,8 @@ class AgentsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         entity: Annotated[
             Optional[StrictStr],
@@ -593,7 +594,8 @@ class AgentsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         entity: Annotated[
             Optional[StrictStr],
@@ -722,7 +724,8 @@ class AgentsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         entity: Annotated[
             Optional[StrictStr],
@@ -769,7 +772,8 @@ class AgentsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         entity: Annotated[
             Optional[StrictStr],
@@ -903,7 +907,8 @@ class AgentsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         entity: Annotated[
             Optional[StrictStr],
@@ -950,7 +955,8 @@ class AgentsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         entity: Annotated[
             Optional[StrictStr],
@@ -1087,7 +1093,8 @@ class AgentsV1Api(BaseApi):
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
         ],
-        service: Annotated[Optional[StrictStr], Field(description="Service.")] = None,
+        service: Annotated[Optional[StrictStr],
+            Field(description="Service.")] = None,
         last_file: Annotated[
             Optional[StrictStr], Field(description="last_file.")
         ] = None,
@@ -1149,7 +1156,8 @@ class AgentsV1Api(BaseApi):
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
         ],
-        service: Annotated[Optional[StrictStr], Field(description="Service.")] = None,
+        service: Annotated[Optional[StrictStr],
+            Field(description="Service.")] = None,
         last_file: Annotated[
             Optional[StrictStr], Field(description="last_file.")
         ] = None,
@@ -1473,7 +1481,8 @@ class AgentsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         entity: Annotated[
             Optional[StrictStr],
@@ -1520,7 +1529,8 @@ class AgentsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         entity: Annotated[
             Optional[StrictStr],
@@ -1969,7 +1979,8 @@ class AgentsV1Api(BaseApi):
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
         ],
-        service: Annotated[Optional[StrictStr], Field(description="Service.")] = None,
+        service: Annotated[Optional[StrictStr],
+            Field(description="Service.")] = None,
         last_file: Annotated[
             Optional[StrictStr], Field(description="last_file.")
         ] = None,
@@ -2031,7 +2042,8 @@ class AgentsV1Api(BaseApi):
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
         ],
-        service: Annotated[Optional[StrictStr], Field(description="Service.")] = None,
+        service: Annotated[Optional[StrictStr],
+            Field(description="Service.")] = None,
         last_file: Annotated[
             Optional[StrictStr], Field(description="last_file.")
         ] = None,
@@ -2192,7 +2204,8 @@ class AgentsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -2205,7 +2218,8 @@ class AgentsV1Api(BaseApi):
         mode: Annotated[
             Optional[StrictStr], Field(description="Mode of the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListAgentsResponse:  # noqa: E501
         """List agents names  # noqa: E501
@@ -2259,7 +2273,8 @@ class AgentsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -2272,7 +2287,8 @@ class AgentsV1Api(BaseApi):
         mode: Annotated[
             Optional[StrictStr], Field(description="Mode of the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """List agents names  # noqa: E501
@@ -2432,7 +2448,8 @@ class AgentsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -2445,7 +2462,8 @@ class AgentsV1Api(BaseApi):
         mode: Annotated[
             Optional[StrictStr], Field(description="Mode of the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListAgentsResponse:  # noqa: E501
         """List agents  # noqa: E501
@@ -2499,7 +2517,8 @@ class AgentsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -2512,7 +2531,8 @@ class AgentsV1Api(BaseApi):
         mode: Annotated[
             Optional[StrictStr], Field(description="Mode of the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """List agents  # noqa: E501
@@ -3381,7 +3401,8 @@ class AgentsV1Api(BaseApi):
     def cron_agent(
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
-        body: Annotated[Optional[Dict], Field(..., description="Cron body")] = None,
+        body: Annotated[Optional[Dict],
+            Field(..., description="Cron body")] = None,
         **kwargs
     ) -> V1AgentStateResponse:  # noqa: E501
         """Global Cron agent  # noqa: E501
@@ -3418,7 +3439,8 @@ class AgentsV1Api(BaseApi):
     def cron_agent_with_http_info(
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
-        body: Annotated[Optional[Dict], Field(..., description="Cron body")] = None,
+        body: Annotated[Optional[Dict],
+            Field(..., description="Cron body")] = None,
         **kwargs
     ):  # noqa: E501
         """Cron agent  # noqa: E501

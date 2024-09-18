@@ -5,7 +5,7 @@ from clipped.utils.lists import to_list
 from polyaxon._connections import V1Connection
 from polyaxon._flow import V1IO, V1CompiledOperation
 from polyaxon.types import IMAGE, LINEAGE_VALUES
-from traceml.artifacts import V1ArtifactKind, V1RunArtifact
+from tracer.artifacts import V1ArtifactKind, V1RunArtifact
 
 
 def collect_artifacts_from_io(

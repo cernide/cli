@@ -1,6 +1,6 @@
 # To keep backwards compatibility
 
-from traceml.integrations.keras import Callback
+from tracer.integrations.keras import Callback
 
 # alias
 PolyaxonCallback = Callback

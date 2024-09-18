@@ -1,6 +1,6 @@
 # To keep backwards compatibility
 
-from traceml.integrations.fastai import Callback
+from tracer.integrations.fastai import Callback
 
 # alias
 PolyaxonCallback = Callback

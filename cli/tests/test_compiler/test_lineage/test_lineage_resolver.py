@@ -21,7 +21,7 @@ from polyaxon._managers.agent import AgentConfigManager
 from polyaxon._polyaxonfile.specs import kinds
 from polyaxon._schemas.agent import AgentConfig
 from polyaxon._utils.test_utils import BaseTestCase
-from traceml.artifacts import V1ArtifactKind
+from tracer.artifacts import V1ArtifactKind
 
 
 @pytest.mark.compiler_mark
@@ -79,7 +79,8 @@ class TestLineageResolver(BaseTestCase):
         assert len(artifacts) == 3
         assert {a.is_input for a in artifacts} == {True, False}
         assert {a.kind for a in artifacts} == {V1ArtifactKind.DOCKER_IMAGE}
-        assert {a.connection for a in artifacts} == {"connection1", "connection2"}
+        assert {a.connection for a in artifacts} == {
+            "connection1", "connection2"}
         assert {a.summary.get("image") for a in artifacts} == {
             "repo1",
             "repo2",
@@ -104,7 +105,8 @@ class TestLineageResolver(BaseTestCase):
         assert len(artifacts) == 3
         assert {a.is_input for a in artifacts} == {True, False}
         assert {a.kind for a in artifacts} == {V1ArtifactKind.DOCKER_IMAGE}
-        assert {a.connection for a in artifacts} == {"connection1", "connection2"}
+        assert {a.connection for a in artifacts} == {
+            "connection1", "connection2"}
         assert {a.summary.get("image") for a in artifacts} == {
             "localhost:5000/repo1",
             "repo2",

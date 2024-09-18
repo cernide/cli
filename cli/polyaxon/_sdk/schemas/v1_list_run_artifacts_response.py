@@ -3,7 +3,7 @@ from typing import List, Optional
 from clipped.compact.pydantic import StrictStr
 from clipped.config.schema import BaseAllowSchemaModel
 
-from traceml.artifacts import V1RunArtifact
+from tracer.artifacts import V1RunArtifact
 
 
 class V1ListRunArtifactsResponse(BaseAllowSchemaModel):

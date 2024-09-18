@@ -3,7 +3,7 @@ import os
 from typing import Dict
 
 from polyaxon._client.init import get_client_or_raise
-from traceml.artifacts import V1ArtifactKind
+from tracer.artifacts import V1ArtifactKind
 
 
 def create_file_lineage(filepath: str, summary: Dict, kind: str):

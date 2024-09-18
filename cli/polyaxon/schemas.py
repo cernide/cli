@@ -241,8 +241,8 @@ from polyaxon._services import (
     PolyaxonServices,
 )
 from polyaxon.types import *
-from traceml.artifacts import V1ArtifactKind, V1RunArtifact, V1RunArtifacts
-from traceml.events import (
+from tracer.artifacts import V1ArtifactKind, V1RunArtifact, V1RunArtifacts
+from tracer.events import (
     LoggedEventListSpec,
     LoggedEventSpec,
     V1Event,
@@ -264,4 +264,4 @@ from traceml.events import (
     get_event_path,
     get_resource_path,
 )
-from traceml.logging.schemas import V1Log, V1Logs
+from tracer.logging.schemas import V1Log, V1Logs

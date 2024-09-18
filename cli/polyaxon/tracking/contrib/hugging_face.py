@@ -1,6 +1,6 @@
 # To keep backwards compatibility
 
-from traceml.integrations.hugging_face import Callback
+from tracer.integrations.hugging_face import Callback
 
 # alias
 PolyaxonCallback = Callback

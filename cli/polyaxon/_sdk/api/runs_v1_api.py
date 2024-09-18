@@ -33,8 +33,8 @@ from polyaxon._sdk.schemas.v1_run import V1Run
 from polyaxon._sdk.schemas.v1_run_settings import V1RunSettings
 from polyaxon._sdk.schemas.v1_uuids import V1Uuids
 from polyaxon.exceptions import ApiTypeError
-from traceml.artifacts import V1RunArtifact, V1RunArtifacts
-from traceml.logging import V1Logs
+from tracer.artifacts import V1RunArtifact, V1RunArtifacts
+from tracer.logging import V1Logs
 
 
 class RunsV1Api(BaseApi):
@@ -49,7 +49,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -98,7 +99,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -403,7 +405,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -452,7 +455,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -757,7 +761,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -806,7 +811,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -1106,7 +1112,8 @@ class RunsV1Api(BaseApi):
         namespace: StrictStr,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -1158,7 +1165,8 @@ class RunsV1Api(BaseApi):
         namespace: StrictStr,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -1295,7 +1303,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -1342,7 +1351,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -1486,7 +1496,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         body: Annotated[V1OperationBody, Field(..., description="operation object")],
         **kwargs
@@ -1530,7 +1541,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         body: Annotated[V1OperationBody, Field(..., description="operation object")],
         **kwargs
@@ -1669,7 +1681,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -1718,7 +1731,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -1859,7 +1873,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -1908,7 +1923,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -2060,7 +2076,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -2109,7 +2126,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -2235,7 +2253,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -2294,7 +2313,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -2353,7 +2373,8 @@ class RunsV1Api(BaseApi):
 
         _params = locals()
 
-        _all_params = ["namespace", "owner", "project", "uuid", "path", "connection"]
+        _all_params = ["namespace", "owner",
+                       "project", "uuid", "path", "connection"]
         _all_params.extend(
             [
                 "async_req",
@@ -2440,7 +2461,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -2494,7 +2516,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -2635,7 +2658,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -2694,7 +2718,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -2753,7 +2778,8 @@ class RunsV1Api(BaseApi):
 
         _params = locals()
 
-        _all_params = ["namespace", "owner", "project", "uuid", "path", "connection"]
+        _all_params = ["namespace", "owner",
+                       "project", "uuid", "path", "connection"]
         _all_params.extend(
             [
                 "async_req",
@@ -3015,7 +3041,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         entity: Annotated[
-            StrictStr, Field(..., description="Entity where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Entity where the run will be assigned")
         ],
         kind: Annotated[str, Field(..., description="The artifact kind")],
         names: Annotated[
@@ -3108,7 +3135,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         entity: Annotated[
-            StrictStr, Field(..., description="Entity where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Entity where the run will be assigned")
         ],
         kind: Annotated[str, Field(..., description="The artifact kind")],
         names: Annotated[
@@ -3305,7 +3333,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         entity: Annotated[
-            StrictStr, Field(..., description="Entity where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Entity where the run will be assigned")
         ],
         body: Annotated[Dict[str, Any], Field(..., description="Params/Metrics data")],
         **kwargs
@@ -3352,7 +3381,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         entity: Annotated[
-            StrictStr, Field(..., description="Entity where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Entity where the run will be assigned")
         ],
         body: Annotated[Dict[str, Any], Field(..., description="Params/Metrics data")],
         **kwargs
@@ -3500,7 +3530,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> V1Run:  # noqa: E501
@@ -3547,7 +3578,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -3682,7 +3714,8 @@ class RunsV1Api(BaseApi):
             Field(..., description="Project where the entity will be assigned"),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Unique integer identifier of the entity")
+            StrictStr, Field(...,
+                             description="Unique integer identifier of the entity")
         ],
         path: Annotated[
             Optional[StrictStr], Field(description="Artifact filepath.")
@@ -3752,7 +3785,8 @@ class RunsV1Api(BaseApi):
             Field(..., description="Project where the entity will be assigned"),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Unique integer identifier of the entity")
+            StrictStr, Field(...,
+                             description="Unique integer identifier of the entity")
         ],
         path: Annotated[
             Optional[StrictStr], Field(description="Artifact filepath.")
@@ -3923,7 +3957,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -3977,7 +4012,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -4127,7 +4163,8 @@ class RunsV1Api(BaseApi):
             Field(..., description="Project where the entity will be assigned"),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Unique integer identifier of the entity")
+            StrictStr, Field(...,
+                             description="Unique integer identifier of the entity")
         ],
         path: Annotated[
             Optional[StrictStr], Field(description="Artifact filepath.")
@@ -4192,7 +4229,8 @@ class RunsV1Api(BaseApi):
             Field(..., description="Project where the entity will be assigned"),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Unique integer identifier of the entity")
+            StrictStr, Field(...,
+                             description="Unique integer identifier of the entity")
         ],
         path: Annotated[
             Optional[StrictStr], Field(description="Artifact filepath.")
@@ -4363,14 +4401,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunArtifactsResponse:  # noqa: E501
         """Get run artifacts lineage  # noqa: E501
@@ -4428,14 +4468,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """Get run artifacts lineage  # noqa: E501
@@ -4599,14 +4641,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunArtifactsResponse:  # noqa: E501
         """Get run artifacts lineage names  # noqa: E501
@@ -4664,14 +4708,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """Get run artifacts lineage names  # noqa: E501
@@ -4830,7 +4876,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -4889,7 +4936,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -4948,7 +4996,8 @@ class RunsV1Api(BaseApi):
 
         _params = locals()
 
-        _all_params = ["namespace", "owner", "project", "uuid", "path", "connection"]
+        _all_params = ["namespace", "owner",
+                       "project", "uuid", "path", "connection"]
         _all_params.extend(
             [
                 "async_req",
@@ -5046,14 +5095,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunsResponse:  # noqa: E501
         """Get run clones lineage  # noqa: E501
@@ -5111,14 +5162,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """Get run clones lineage  # noqa: E501
@@ -5282,14 +5335,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunConnectionsResponse:  # noqa: E501
         """Get run connections lineage  # noqa: E501
@@ -5347,14 +5402,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """Get run connections lineage  # noqa: E501
@@ -5518,14 +5575,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunEdgesResponse:  # noqa: E501
         """Get run downstream lineage  # noqa: E501
@@ -5583,14 +5642,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """Get run downstream lineage  # noqa: E501
@@ -5749,7 +5810,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -5842,7 +5904,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -6039,7 +6102,8 @@ class RunsV1Api(BaseApi):
         namespace: StrictStr,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -6116,7 +6180,8 @@ class RunsV1Api(BaseApi):
         namespace: StrictStr,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -6306,7 +6371,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> V1RunSettings:  # noqa: E501
@@ -6355,7 +6421,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -6486,7 +6553,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -6495,7 +6563,8 @@ class RunsV1Api(BaseApi):
             Optional[StrictStr], Field(description="Names query param.")
         ] = None,
         tail: Annotated[
-            Optional[bool], Field(description="Query param flag to tail the values.")
+            Optional[bool], Field(
+                description="Query param flag to tail the values.")
         ] = None,
         force: Annotated[
             Optional[bool], Field(description="Force query param.")
@@ -6575,7 +6644,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -6584,7 +6654,8 @@ class RunsV1Api(BaseApi):
             Optional[StrictStr], Field(description="Names query param.")
         ] = None,
         tail: Annotated[
-            Optional[bool], Field(description="Query param flag to tail the values.")
+            Optional[bool], Field(
+                description="Query param flag to tail the values.")
         ] = None,
         force: Annotated[
             Optional[bool], Field(description="Force query param.")
@@ -6771,7 +6842,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> V1RunSettings:  # noqa: E501
@@ -6820,7 +6892,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -6956,7 +7029,8 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -6966,15 +7040,18 @@ class RunsV1Api(BaseApi):
         bookmarks: Annotated[
             Optional[bool], Field(description="Filter by bookmarks.")
         ] = None,
-        mode: Annotated[Optional[StrictStr], Field(description="Stats Mode.")] = None,
-        kind: Annotated[Optional[StrictStr], Field(description="Stats Kind.")] = None,
+        mode: Annotated[Optional[StrictStr], Field(
+            description="Stats Mode.")] = None,
+        kind: Annotated[Optional[StrictStr], Field(
+            description="Stats Kind.")] = None,
         aggregate: Annotated[
             Optional[StrictStr], Field(description="Stats aggregate.")
         ] = None,
         groupby: Annotated[
             Optional[StrictStr], Field(description="Stats group.")
         ] = None,
-        trunc: Annotated[Optional[StrictStr], Field(description="Stats trunc.")] = None,
+        trunc: Annotated[Optional[StrictStr], Field(
+            description="Stats trunc.")] = None,
         **kwargs
     ) -> object:  # noqa: E501
         """Get run stats  # noqa: E501
@@ -7055,7 +7132,8 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -7065,15 +7143,18 @@ class RunsV1Api(BaseApi):
         bookmarks: Annotated[
             Optional[bool], Field(description="Filter by bookmarks.")
         ] = None,
-        mode: Annotated[Optional[StrictStr], Field(description="Stats Mode.")] = None,
-        kind: Annotated[Optional[StrictStr], Field(description="Stats Kind.")] = None,
+        mode: Annotated[Optional[StrictStr], Field(
+            description="Stats Mode.")] = None,
+        kind: Annotated[Optional[StrictStr], Field(
+            description="Stats Kind.")] = None,
         aggregate: Annotated[
             Optional[StrictStr], Field(description="Stats aggregate.")
         ] = None,
         groupby: Annotated[
             Optional[StrictStr], Field(description="Stats group.")
         ] = None,
-        trunc: Annotated[Optional[StrictStr], Field(description="Stats trunc.")] = None,
+        trunc: Annotated[Optional[StrictStr], Field(
+            description="Stats trunc.")] = None,
         **kwargs
     ):  # noqa: E501
         """Get run stats  # noqa: E501
@@ -7262,7 +7343,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> V1Status:  # noqa: E501
@@ -7311,7 +7393,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -7447,14 +7530,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunEdgesResponse:  # noqa: E501
         """Get run upstream lineage  # noqa: E501
@@ -7512,14 +7597,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """Get run upstream lineage  # noqa: E501
@@ -7682,7 +7769,8 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -7695,7 +7783,8 @@ class RunsV1Api(BaseApi):
         mode: Annotated[
             Optional[StrictStr], Field(description="Mode of the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunArtifactsResponse:  # noqa: E501
         """Get runs artifacts lineage  # noqa: E501
@@ -7754,7 +7843,8 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -7767,7 +7857,8 @@ class RunsV1Api(BaseApi):
         mode: Annotated[
             Optional[StrictStr], Field(description="Mode of the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """Get runs artifacts lineage  # noqa: E501
@@ -7936,7 +8027,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> V1Auth:  # noqa: E501
@@ -7985,7 +8077,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -8116,7 +8209,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -8125,7 +8219,8 @@ class RunsV1Api(BaseApi):
             Optional[StrictStr], Field(description="Names query param.")
         ] = None,
         tail: Annotated[
-            Optional[bool], Field(description="Query param flag to tail the values.")
+            Optional[bool], Field(
+                description="Query param flag to tail the values.")
         ] = None,
         force: Annotated[
             Optional[bool], Field(description="Force query param.")
@@ -8205,7 +8300,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="namespace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -8214,7 +8310,8 @@ class RunsV1Api(BaseApi):
             Optional[StrictStr], Field(description="Names query param.")
         ] = None,
         tail: Annotated[
-            Optional[bool], Field(description="Query param flag to tail the values.")
+            Optional[bool], Field(
+                description="Query param flag to tail the values.")
         ] = None,
         force: Annotated[
             Optional[bool], Field(description="Force query param.")
@@ -8401,7 +8498,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -8450,7 +8548,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -8751,14 +8850,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunsResponse:  # noqa: E501
         """List archived runs for user  # noqa: E501
@@ -8808,14 +8909,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """List archived runs for user  # noqa: E501
@@ -8958,14 +9061,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListBookmarksResponse:  # noqa: E501
         """List bookmarked runs for user  # noqa: E501
@@ -9015,14 +9120,16 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
         query: Annotated[
             Optional[StrictStr], Field(description="Query filter the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """List bookmarked runs for user  # noqa: E501
@@ -9168,7 +9275,8 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -9181,7 +9289,8 @@ class RunsV1Api(BaseApi):
         mode: Annotated[
             Optional[StrictStr], Field(description="Mode of the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ) -> V1ListRunsResponse:  # noqa: E501
         """List runs  # noqa: E501
@@ -9240,7 +9349,8 @@ class RunsV1Api(BaseApi):
         offset: Annotated[
             Optional[StrictInt], Field(description="Pagination offset.")
         ] = None,
-        limit: Annotated[Optional[StrictInt], Field(description="Limit size.")] = None,
+        limit: Annotated[Optional[StrictInt], Field(
+            description="Limit size.")] = None,
         sort: Annotated[
             Optional[StrictStr], Field(description="Sort to order the search.")
         ] = None,
@@ -9253,7 +9363,8 @@ class RunsV1Api(BaseApi):
         mode: Annotated[
             Optional[StrictStr], Field(description="Mode of the search.")
         ] = None,
-        no_page: Annotated[Optional[bool], Field(description="No pagination.")] = None,
+        no_page: Annotated[Optional[bool], Field(
+            description="No pagination.")] = None,
         **kwargs
     ):  # noqa: E501
         """List runs  # noqa: E501
@@ -9417,7 +9528,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="Na,espace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -9469,7 +9581,8 @@ class RunsV1Api(BaseApi):
         namespace: Annotated[StrictStr, Field(..., description="Na,espace")],
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         uuid: Annotated[
             StrictStr, Field(..., description="Uuid identifier of the entity")
@@ -9614,7 +9727,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -9661,7 +9775,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -9805,7 +9920,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -9852,7 +9968,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -10002,7 +10119,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -10051,7 +10169,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -10350,7 +10469,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -10397,7 +10517,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -10726,7 +10847,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -10773,7 +10895,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -11072,7 +11195,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -11119,7 +11243,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -11416,7 +11541,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         body: Annotated[V1Run, Field(..., description="Run object")],
         **kwargs
@@ -11460,7 +11586,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         body: Annotated[V1Run, Field(..., description="Run object")],
         **kwargs
@@ -11766,7 +11893,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -11813,7 +11941,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -12132,7 +12261,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ) -> None:  # noqa: E501
@@ -12181,7 +12311,8 @@ class RunsV1Api(BaseApi):
             ),
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Uuid identifier of the sub-entity")
+            StrictStr, Field(...,
+                             description="Uuid identifier of the sub-entity")
         ],
         **kwargs
     ):  # noqa: E501
@@ -12306,7 +12437,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -12353,7 +12485,8 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project where the run will be assigned")
+            StrictStr, Field(...,
+                             description="Project where the run will be assigned")
         ],
         run_uuid: Annotated[StrictStr, Field(..., description="UUID")],
         body: Annotated[V1Run, Field(..., description="Run object")],
@@ -12497,10 +12630,12 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project having access to the store")
+            StrictStr, Field(...,
+                             description="Project having access to the store")
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Unique integer identifier of the entity")
+            StrictStr, Field(...,
+                             description="Unique integer identifier of the entity")
         ],
         uploadfile: Annotated[StrictStr, Field(..., description="The file to upload.")],
         path: Annotated[
@@ -12561,10 +12696,12 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project having access to the store")
+            StrictStr, Field(...,
+                             description="Project having access to the store")
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Unique integer identifier of the entity")
+            StrictStr, Field(...,
+                             description="Unique integer identifier of the entity")
         ],
         uploadfile: Annotated[StrictStr, Field(..., description="The file to upload.")],
         path: Annotated[
@@ -12697,7 +12834,8 @@ class RunsV1Api(BaseApi):
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get(
             "_content_type",
-            self.api_client.select_header_content_type(["multipart/form-data"]),
+            self.api_client.select_header_content_type(
+                ["multipart/form-data"]),
         )
         if _content_types_list:
             _header_params["Content-Type"] = _content_types_list
@@ -12731,10 +12869,12 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project having access to the store")
+            StrictStr, Field(...,
+                             description="Project having access to the store")
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Unique integer identifier of the entity")
+            StrictStr, Field(...,
+                             description="Unique integer identifier of the entity")
         ],
         uploadfile: Annotated[StrictStr, Field(..., description="The file to upload.")],
         path: Annotated[
@@ -12795,10 +12935,12 @@ class RunsV1Api(BaseApi):
         self,
         owner: Annotated[StrictStr, Field(..., description="Owner of the namespace")],
         project: Annotated[
-            StrictStr, Field(..., description="Project having access to the store")
+            StrictStr, Field(...,
+                             description="Project having access to the store")
         ],
         uuid: Annotated[
-            StrictStr, Field(..., description="Unique integer identifier of the entity")
+            StrictStr, Field(...,
+                             description="Unique integer identifier of the entity")
         ],
         uploadfile: Annotated[StrictStr, Field(..., description="The file to upload.")],
         path: Annotated[
@@ -12931,7 +13073,8 @@ class RunsV1Api(BaseApi):
         # set the HTTP header `Content-Type`
         _content_types_list = _params.get(
             "_content_type",
-            self.api_client.select_header_content_type(["multipart/form-data"]),
+            self.api_client.select_header_content_type(
+                ["multipart/form-data"]),
         )
         if _content_types_list:
             _header_params["Content-Type"] = _content_types_list

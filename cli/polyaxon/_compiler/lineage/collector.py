@@ -3,7 +3,7 @@ from typing import Dict, List
 from polyaxon._compiler.lineage.io_collector import collect_io_artifacts
 from polyaxon._connections import V1Connection
 from polyaxon._flow import ParamSpec, V1CompiledOperation
-from traceml.artifacts import V1RunArtifact
+from tracer.artifacts import V1RunArtifact
 
 
 def resolve_artifacts_lineage(

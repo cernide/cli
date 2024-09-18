@@ -75,16 +75,16 @@ from polyaxon._utils.urls_utils import get_proxy_run_url
 from polyaxon.api import K8S_V1_LOCATION, STREAMS_V1_LOCATION
 from polyaxon.exceptions import ApiException, PolyaxonClientException
 from polyaxon.logger import logger
-from traceml.artifacts import V1ArtifactKind, V1RunArtifact, V1RunArtifacts
-from traceml.events import V1Events
-from traceml.logging.streamer import get_logs_streamer
+from tracer.artifacts import V1ArtifactKind, V1RunArtifact, V1RunArtifacts
+from tracer.events import V1Events
+from tracer.logging.streamer import get_logs_streamer
 
 if TYPE_CHECKING:
     from polyaxon._sdk.schemas.v1_list_run_artifacts_response import (
         V1ListRunArtifactsResponse,
     )
-    from traceml.logging import V1Logs
-    from traceml.tracking.run import Run
+    from tracer.logging import V1Logs
+    from tracer.tracking.run import Run
 
 
 class RunClient(ClientMixin):
@@ -368,7 +368,8 @@ class RunClient(ClientMixin):
         """
         if self._is_offline:
             for k in data:
-                setattr(self._run_data, k, getattr(data, k, None))  # type: ignore
+                setattr(self._run_data, k, getattr(
+                    data, k, None))  # type: ignore
         return self._update(data=data, async_req=async_req)
 
     @client_handler(check_no_op=True)
@@ -870,7 +871,8 @@ class RunClient(ClientMixin):
                 latest_status = Printer.add_status_color(
                     {"status": status}, status_key="status"
                 )
-                live_update.update(status="{}\n".format(latest_status["status"]))
+                live_update.update(
+                    status="{}\n".format(latest_status["status"]))
 
     @client_handler(check_no_op=True, check_offline=True)
     def watch_statuses(self, statuses: Optional[List[str]] = None):
@@ -929,7 +931,8 @@ class RunClient(ClientMixin):
         if not self.settings:
             self.refresh_data()
         self._use_agent_host()
-        params = get_streams_params(connection=self.artifacts_store, status=self.status)
+        params = get_streams_params(
+            connection=self.artifacts_store, status=self.status)
         return self.client.runs_v1.inspect_run(
             self.namespace, self.owner, self.project, self.run_uuid, **params
         )
@@ -979,7 +982,8 @@ class RunClient(ClientMixin):
                     )
                 )
             pod_content = pod_content.get("spec", {})
-            pod_containers = [c.get("name") for c in pod_content.get("containers", [])]
+            pod_containers = [c.get("name")
+                              for c in pod_content.get("containers", [])]
             if not pod_containers:
                 raise PolyaxonClientException(
                     "The shell command is only usable for operations managed by Polyaxon "
@@ -1030,7 +1034,8 @@ class RunClient(ClientMixin):
                 ("stdout", stdout),
                 ("tty", tty),
             ],
-            headers=self.client.config.get_full_headers(auth_key="authorization"),
+            headers=self.client.config.get_full_headers(
+                auth_key="authorization"),
         )
 
     @client_handler(check_no_op=True, check_offline=True)
@@ -1243,7 +1248,8 @@ class RunClient(ClientMixin):
         """
         import hiplot
 
-        data = self.get_runs_io(query=query, sort=sort, limit=limit, offset=offset)
+        data = self.get_runs_io(query=query, sort=sort,
+                                limit=limit, offset=offset)
         exp = hiplot.Experiment()
         for d in data:
             dp = hiplot.Datapoint(uid=d["uid"], values=d["values"])
@@ -1453,7 +1459,8 @@ class RunClient(ClientMixin):
             subpath="artifact",
         )
         url = absolute_uri(url=url, host=self.client.config.host)
-        params = get_streams_params(connection=self.artifacts_store, force=force)
+        params = get_streams_params(
+            connection=self.artifacts_store, force=force)
         return self.store.download_file(
             url=url, path=path, path_to=path_to, params=params
         )
@@ -1811,7 +1818,8 @@ class RunClient(ClientMixin):
                     copy_artifacts.files = [
                         "{}/{}".format(self.run_uuid, cp) for cp in copy_files
                     ]
-                body.meta_info = {META_COPY_ARTIFACTS: copy_artifacts.to_dict()}
+                body.meta_info = {
+                    META_COPY_ARTIFACTS: copy_artifacts.to_dict()}
             if recompile:
                 body.meta_info = body.meta_info or {}
                 body.meta_info[META_RECOMPILE] = True
@@ -2081,7 +2089,8 @@ class RunClient(ClientMixin):
         This method is only useful for manual runs outside of Polyaxon.
         </blockquote>
         """
-        self._log_end_status(status=V1Statuses.STOPPED, reason=reason, message=message)
+        self._log_end_status(status=V1Statuses.STOPPED,
+                             reason=reason, message=message)
 
     @client_handler(check_no_op=True)
     def log_failed(self, reason: Optional[str] = None, message: Optional[str] = None):
@@ -2112,7 +2121,8 @@ class RunClient(ClientMixin):
         for_patterns = for_patterns or []
         if not self._default_filename_sanitize_paths:
             self._default_filename_sanitize_paths = [
-                ctx_paths.CONTEXT_MOUNT_RUN_OUTPUTS_FORMAT.format(self.run_uuid)
+                ctx_paths.CONTEXT_MOUNT_RUN_OUTPUTS_FORMAT.format(
+                    self.run_uuid)
                 + os.sep,
                 ctx_paths.CONTEXT_MOUNT_RUN_EVENTS_FORMAT.format(self.run_uuid)
                 + os.sep,
@@ -2122,7 +2132,8 @@ class RunClient(ClientMixin):
                     self.run_uuid
                 )
                 + os.sep,
-                ctx_paths.CONTEXT_MOUNT_ARTIFACTS_FORMAT.format(self.run_uuid) + os.sep,
+                ctx_paths.CONTEXT_MOUNT_ARTIFACTS_FORMAT.format(
+                    self.run_uuid) + os.sep,
                 ctx_paths.get_offline_path(
                     entity_value=self.run_uuid, entity_kind=V1ProjectFeature.RUNTIME
                 )
@@ -2130,7 +2141,7 @@ class RunClient(ClientMixin):
             ]
         for p in self._default_filename_sanitize_paths + for_patterns:
             if filename.startswith(p):
-                filename = filename[len(p) :]
+                filename = filename[len(p):]
                 break
 
         return to_fqn_name(filename)
@@ -2170,7 +2181,8 @@ class RunClient(ClientMixin):
             if self._is_offline
             else ctx_paths.CONTEXT_MOUNT_ARTIFACTS
         )
-        for_patterns += [os.path.join(context_root, self.run_uuid), context_root]
+        for_patterns += [os.path.join(context_root,
+                                      self.run_uuid), context_root]
 
         for _path in for_patterns:
             if _path in abspath:
@@ -2291,7 +2303,8 @@ class RunClient(ClientMixin):
                     if os.path.exists(path):
                         summary["path"] = os.path.abspath(path)
                         summary["hash"] = (
-                            hash_file(path) if os.path.isfile(path) else hash_dir(path)
+                            hash_file(path) if os.path.isfile(
+                                path) else hash_dir(path)
                         )
                     else:
                         summary["path"] = path
@@ -2395,7 +2408,8 @@ class RunClient(ClientMixin):
         )
         if path:
             name = name or get_base_filename(path)
-            rel_path = self._sanitize_filepath(filepath=path, rel_path=rel_path)
+            rel_path = self._sanitize_filepath(
+                filepath=path, rel_path=rel_path)
         if name:
             artifact_run = V1RunArtifact.construct(
                 name=self._sanitize_filename(name),
@@ -2665,7 +2679,8 @@ class RunClient(ClientMixin):
         Returns:
             List[V1Run], list of run instances.
         """
-        params = get_query_params(limit=limit, offset=offset, query=query, sort=sort)
+        params = get_query_params(
+            limit=limit, offset=offset, query=query, sort=sort)
         query = params.get("query")
         query = query + "," if query else ""
         query += "pipeline:{}".format(self.run_uuid)
@@ -2786,7 +2801,8 @@ class RunClient(ClientMixin):
         summaries = []
         last_values = {}
         connection_name = get_artifacts_store_name(default=None)
-        with get_files_in_path_context(current_events_path) as files:  # type: List[str]
+        # type: List[str]
+        with get_files_in_path_context(current_events_path) as files:
             for f in files:
                 if last_check and not file_modified_since(
                     filepath=f, last_time=last_check
@@ -2794,7 +2810,8 @@ class RunClient(ClientMixin):
                     continue
 
                 event_name = os.path.basename(f).split(".plx")[0]
-                event = V1Events.read(kind=events_kind, name=event_name, data=f)
+                event = V1Events.read(
+                    kind=events_kind, name=event_name, data=f)
                 if event.df.empty:
                     continue
 
@@ -2895,12 +2912,14 @@ class RunClient(ClientMixin):
         run_path = "{}/{}".format(path, ctx_paths.CONTEXT_LOCAL_RUN)
         with open(run_path, "w") as config_file:
             config_file.write(
-                orjson_dumps(self.client.sanitize_for_serialization(self.run_data))
+                orjson_dumps(
+                    self.client.sanitize_for_serialization(self.run_data))
             )
         set_permissions(run_path)
 
         if not self._artifacts_lineage:
-            logger.debug("Persist offline run call did not find any lineage data. ")
+            logger.debug(
+                "Persist offline run call did not find any lineage data. ")
             return
 
         lineages_path = "{}/{}".format(path, ctx_paths.CONTEXT_LOCAL_LINEAGES)
@@ -2946,7 +2965,8 @@ class RunClient(ClientMixin):
         run_path = "{}/{}".format(path, ctx_paths.CONTEXT_LOCAL_RUN)
         if not os.path.isfile(run_path):
             if raise_if_not_found:
-                raise PolyaxonClientException(f"Offline data was not found: {run_path}")
+                raise PolyaxonClientException(
+                    f"Offline data was not found: {run_path}")
             else:
                 logger.info(f"Offline data was not found: {run_path}")
                 return None
@@ -2983,8 +3003,10 @@ class RunClient(ClientMixin):
             return run_client
         with open(lineages_path, "r") as config_file:
             config_str = config_file.read()
-            lineages = [V1RunArtifact.from_dict(l) for l in orjson_loads(config_str)]
-            run_client._artifacts_lineage = {l.name: l for l in lineages}  # type: ignore
+            lineages = [V1RunArtifact.from_dict(
+                l) for l in orjson_loads(config_str)]
+            run_client._artifacts_lineage = {
+                l.name: l for l in lineages}  # type: ignore
             logger.info(f"Offline lineage data loaded from: {lineages_path}")
 
         return run_client
@@ -3049,7 +3071,8 @@ class RunClient(ClientMixin):
             self.log_artifact_lineage(
                 [l for l in self._artifacts_lineage.values()], async_req=False
             )
-            logger.info(f"Offline lineage data for run {self.run_data.uuid} synced")
+            logger.info(
+                f"Offline lineage data for run {self.run_data.uuid} synced")
         else:
             logger.warning("Push offline run failed. No lineage data found.")
             return
@@ -3062,7 +3085,8 @@ class RunClient(ClientMixin):
                 relative_to=path,
                 agent=agent,
             )
-            logger.info(f"Offline artifacts for run {self.run_data.uuid} uploaded")
+            logger.info(
+                f"Offline artifacts for run {self.run_data.uuid} uploaded")
 
         if clean:
             delete_path(path)
@@ -3080,7 +3104,8 @@ def get_run_logs(
 ):
     def get_logs(last_file=None, last_time=None):
         try:
-            response = client.get_logs(last_file=last_file, last_time=last_time)
+            response = client.get_logs(
+                last_file=last_file, last_time=last_time)
             get_logs_streamer(
                 show_timestamp=not hide_time,
                 all_containers=all_containers,
@@ -3091,7 +3116,8 @@ def get_run_logs(
             if not follow:
                 handle_cli_error(
                     e,
-                    message="Could not get logs for run `{}`.".format(client.run_uuid),
+                    message="Could not get logs for run `{}`.".format(
+                        client.run_uuid),
                 )
                 sys.exit(1)
 

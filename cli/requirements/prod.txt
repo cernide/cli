@@ -1,2 +1,2 @@
-traceml==1.1.*
+tracer==1.1.*
 hypertuner==1.1.*

@@ -1,6 +1,6 @@
 # To keep backwards compatibility
 
-from traceml.integrations.tensorflow import Callback
+from tracer.integrations.tensorflow import Callback
 
 # alias
 PolyaxonCallback = Callback

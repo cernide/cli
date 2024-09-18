@@ -7,7 +7,7 @@ from kubernetes.client.rest import ApiException
 from polyaxon._k8s.manager.manager import K8sManager
 from polyaxon.client import RunClient
 from polyaxon.exceptions import PolyaxonK8sError
-from traceml.logging import V1Log
+from tracer.logging import V1Log
 
 
 def query_logs(

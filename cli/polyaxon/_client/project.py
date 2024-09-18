@@ -29,7 +29,7 @@ from polyaxon._utils.fqn_utils import (
 )
 from polyaxon.exceptions import ApiException, PolyaxonClientException
 from polyaxon.logger import logger
-from traceml.artifacts import V1RunArtifact
+from tracer.artifacts import V1RunArtifact
 
 
 class ProjectClient(ClientMixin):
@@ -179,7 +179,8 @@ class ProjectClient(ClientMixin):
         Returns:
             List[V1Project], list of project instances.
         """
-        params = get_query_params(limit=limit, offset=offset, query=query, sort=sort)
+        params = get_query_params(
+            limit=limit, offset=offset, query=query, sort=sort)
         return self.client.projects_v1.list_projects(self.owner, **params)
 
     @client_handler(check_no_op=True, check_offline=True)
@@ -398,7 +399,8 @@ class ProjectClient(ClientMixin):
             self.owner, self.project, kind, version
         )
         if response.kind != kind:
-            raise PolyaxonClientException("This version is not of kind `%s`." % kind)
+            raise PolyaxonClientException(
+                "This version is not of kind `%s`." % kind)
         return response
 
     @client_handler(check_no_op=True, check_offline=True)
@@ -765,7 +767,8 @@ class ProjectClient(ClientMixin):
                 raise PolyaxonClientException(
                     "A {} version {} already exists. "
                     "Please pass the `force` argument or `--force` flag for CLI) "
-                    "if you want to push force this version.".format(kind, version)
+                    "if you want to push force this version.".format(
+                        kind, version)
                 )
             to_update = True
         except (ApiException, HTTPError, AttributeError):
@@ -1431,10 +1434,12 @@ class ProjectClient(ClientMixin):
         if not config.content:
             return
         if config.kind == V1ProjectVersionKind.COMPONENT:
-            version_path = "{}/{}".format(path, ctx_paths.CONTEXT_LOCAL_POLYAXONFILE)
+            version_path = "{}/{}".format(path,
+                                          ctx_paths.CONTEXT_LOCAL_POLYAXONFILE)
         else:
             # Persist content metadata as content.json file
-            version_path = "{}/{}".format(path, ctx_paths.CONTEXT_LOCAL_CONTENT)
+            version_path = "{}/{}".format(path,
+                                          ctx_paths.CONTEXT_LOCAL_CONTENT)
         with open(version_path, "w") as config_file:
             config_file.write(config.content)
 
@@ -1462,7 +1467,8 @@ class ProjectClient(ClientMixin):
         if not run_info:
             logger.info(
                 "Skip artifacts download for version {} with kind {}. "
-                "The version is not linked to any run.".format(config.name, config.kind)
+                "The version is not linked to any run.".format(
+                    config.name, config.kind)
             )
             return
 
@@ -1484,7 +1490,8 @@ class ProjectClient(ClientMixin):
         from polyaxon._client.run import RunClient
 
         # Creating run client to download artifacts
-        run_client = RunClient(owner=self.owner, project=run_project, run_uuid=run_uuid)
+        run_client = RunClient(
+            owner=self.owner, project=run_project, run_uuid=run_uuid)
         for artifact_lineage in run_artifacts:
             logger.info(
                 "Downloading artifact {} with kind {} and remote path {} to {}".format(
