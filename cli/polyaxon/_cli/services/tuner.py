@@ -29,8 +29,8 @@ def tuner():
 @click.option("--iteration", type=int, help="The current iteration.")
 def bayes(matrix, configs, metrics, iteration):
     """Create suggestions based on bayesian optimization."""
-    from hypertune.iteration_lineage import handle_iteration, handle_iteration_failure
-    from hypertune.search_managers.bayesian_optimization.manager import (
+    from hypertuner.iteration_lineage import handle_iteration, handle_iteration_failure
+    from hypertuner.search_managers.bayesian_optimization.manager import (
         BayesSearchManager,
     )
     from polyaxon._flow import V1Bayes
@@ -92,8 +92,8 @@ def bayes(matrix, configs, metrics, iteration):
 )
 def hyperband(matrix, configs, metrics, iteration, bracket_iteration):
     """Create suggestions based on hyperband."""
-    from hypertune.iteration_lineage import handle_iteration, handle_iteration_failure
-    from hypertune.search_managers.hyperband.manager import HyperbandManager
+    from hypertuner.iteration_lineage import handle_iteration, handle_iteration_failure
+    from hypertuner.search_managers.hyperband.manager import HyperbandManager
     from polyaxon._flow import V1Hyperband
     from polyaxon.client import RunClient
 
@@ -150,8 +150,8 @@ def hyperband(matrix, configs, metrics, iteration, bracket_iteration):
 @click.option("--iteration", type=int, help="The current iteration.")
 def hyperopt(matrix, configs, metrics, iteration):
     """Create suggestions based on hyperopt."""
-    from hypertune.iteration_lineage import handle_iteration, handle_iteration_failure
-    from hypertune.search_managers.hyperopt.manager import HyperoptManager
+    from hypertuner.iteration_lineage import handle_iteration, handle_iteration_failure
+    from hypertuner.search_managers.hyperopt.manager import HyperoptManager
     from polyaxon._flow import V1Hyperopt
     from polyaxon.client import RunClient
 

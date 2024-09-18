@@ -6,7 +6,7 @@ from datetime import date, datetime, timedelta
 from clipped.compact.pydantic import ValidationError
 from clipped.utils.json import orjson_dumps
 
-from hypertune.matrix.utils import get_length, get_max, get_min, sample, to_numpy
+from hypertuner.matrix.utils import get_length, get_max, get_min, sample, to_numpy
 from polyaxon._flow.matrix.params import (
     V1HpChoice,
     V1HpDateRange,
@@ -81,7 +81,8 @@ class TestMatrixConfigs(BaseTestCase):
             V1HpChoice.from_dict(config_dict)
 
     def test_matrix_pchoice_option(self):
-        config_dict = {"kind": "pchoice", "value": [(1, 0.1), (2, 0.3), (3, 6)]}
+        config_dict = {"kind": "pchoice",
+                       "value": [(1, 0.1), (2, 0.3), (3, 6)]}
         with self.assertRaises(ValidationError):
             V1HpPChoice.from_dict(config_dict)
 
@@ -145,7 +146,8 @@ class TestMatrixConfigs(BaseTestCase):
         def assert_equal(config, v1, v2, v3):
             result = {"start": v1, "stop": v2, "step": v3}
             assert config.to_dict()["value"] == result
-            np.testing.assert_array_equal(to_numpy(config), np.arange(**result))
+            np.testing.assert_array_equal(
+                to_numpy(config), np.arange(**result))
             assert get_length(config) == len(np.arange(**result))
             assert sample(config) in np.arange(**result)
             assert config.is_categorical is False
@@ -189,7 +191,8 @@ class TestMatrixConfigs(BaseTestCase):
         assert config.to_json() == orjson_dumps(config_dict)
 
     def test_matrix_date_range_option(self):
-        deserialize_date = lambda x: date.fromisoformat(x) if isinstance(x, str) else x
+        def deserialize_date(x): return date.fromisoformat(
+            x) if isinstance(x, str) else x
 
         def assert_equal(config, _v1, _v2, _v3):
             v1 = deserialize_date(_v1)
@@ -199,7 +202,8 @@ class TestMatrixConfigs(BaseTestCase):
             assert config.value.start == v1
             assert config.value.stop == v2
             assert config.value.step == v3
-            np.testing.assert_array_equal(to_numpy(config), np.arange(**result))
+            np.testing.assert_array_equal(
+                to_numpy(config), np.arange(**result))
             assert get_length(config) == len(np.arange(**result))
             assert sample(config) in np.arange(**result)
             assert config.is_categorical is False
@@ -264,7 +268,8 @@ class TestMatrixConfigs(BaseTestCase):
             assert config.value.start == v1
             assert config.value.stop == v2
             assert config.value.step == v3
-            np.testing.assert_array_equal(to_numpy(config), np.arange(**result))
+            np.testing.assert_array_equal(
+                to_numpy(config), np.arange(**result))
             assert get_length(config) == len(np.arange(**result))
             assert sample(config) in np.arange(**result)
             assert config.is_categorical is False
@@ -318,7 +323,8 @@ class TestMatrixConfigs(BaseTestCase):
         def assert_equal(config, v1, v2, v3):
             result = {"start": v1, "stop": v2, "num": int(v3)}
             assert config.to_dict()["value"] == result
-            np.testing.assert_array_equal(to_numpy(config), np.linspace(**result))
+            np.testing.assert_array_equal(
+                to_numpy(config), np.linspace(**result))
             assert get_length(config) == len(np.linspace(**result))
             assert sample(config) in np.linspace(**result)
             assert config.is_categorical is False
@@ -376,7 +382,8 @@ class TestMatrixConfigs(BaseTestCase):
         def assert_equal(config, v1, v2, v3):
             result = {"start": v1, "stop": v2, "num": v3}
             assert config.to_dict()["value"] == result
-            np.testing.assert_array_equal(to_numpy(config), np.geomspace(**result))
+            np.testing.assert_array_equal(
+                to_numpy(config), np.geomspace(**result))
             assert get_length(config) == len(np.geomspace(**result))
             assert sample(config) in np.geomspace(**result)
             assert config.is_categorical is False
@@ -430,7 +437,8 @@ class TestMatrixConfigs(BaseTestCase):
                 result["base"] = v4
 
             assert config.to_dict()["value"] == result
-            np.testing.assert_array_equal(to_numpy(config), np.logspace(**result))
+            np.testing.assert_array_equal(
+                to_numpy(config), np.logspace(**result))
             assert get_length(config) == len(np.logspace(**result))
             assert sample(config) in np.logspace(**result)
             assert config.is_categorical is False

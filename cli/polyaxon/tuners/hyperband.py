@@ -1,1 +1,1 @@
-from hypertune.search_managers.hyperband.manager import HyperbandManager
+from hypertuner.search_managers.hyperband.manager import HyperbandManager

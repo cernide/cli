@@ -1,1 +1,1 @@
-from hypertune.search_managers.grid_search.manager import GridSearchManager
+from hypertuner.search_managers.grid_search.manager import GridSearchManager

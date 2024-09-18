@@ -1,1 +1,1 @@
-from hypertune.search_managers.hyperopt.manager import HyperoptManager
+from hypertuner.search_managers.hyperopt.manager import HyperoptManager

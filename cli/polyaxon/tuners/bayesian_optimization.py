@@ -1,1 +1,1 @@
-from hypertune.search_managers.bayesian_optimization.manager import BayesSearchManager
+from hypertuner.search_managers.bayesian_optimization.manager import BayesSearchManager

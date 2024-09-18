@@ -10,7 +10,7 @@
 [![CLI](https://github.com/cernide/cli/actions/workflows/cli.yml/badge.svg)](https://github.com/cernide/cli/actions/workflows/cli.yml)
 [![Polyaxon](https://github.com/cernide/cernide/actions/workflows/cli.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/cli.yml)
 [![Core](https://github.com/cernide/cernide/actions/workflows/core.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/core.yml)
-[![Hypertune](https://github.com/cernide/cernide/actions/workflows/hypertune.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/hypertune.yml)
+[![Hypertuner](https://github.com/cernide/cernide/actions/workflows/hypertuner.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/hypertuner.yml)
 [![Traceml](https://github.com/cernide/cernide/actions/workflows/traceml.yml/badge.svg)](https://github.com/cernide/cernide/actions/workflows/traceml.yml)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/90c05b6b112548c1a88b950beceacb69)](https://www.codacy.com/app/polyaxon/polyaxon?utm_source=github.com&utm_medium=referral&utm_content=polyaxon/polyaxon&utm_campaign=Badge_Grade)
 
