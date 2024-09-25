@@ -1,0 +1,19 @@
+FROM cernide/cli
+
+LABEL maintainer="Robin Röper <rr@linux.com>"
+
+# Set service type
+ENV POLYAXON_SERVICE=cli
+
+# Reset to root
+USER root
+
+# Install the package
+RUN pip install --no-cache-dir dist/*.whl[dev]
+
+# Set the user
+RUN groupadd -r nobody && useradd -r -g nobody nobody
+USER nobody
+
+# Set the entrypoint
+ENTRYPOINT ["polyaxon"]

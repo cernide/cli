@@ -178,27 +178,31 @@ def get_default_cleaner_container(
 ) -> k8s_schemas.V1Container:
     subpath = os.path.join(store.store_path, run_uuid)
 
-    clean_args = "polyaxon clean-artifacts {} --connection-name {} --subpath={}".format(
-        store.kind.replace("_", "-"), store.name, subpath
-    )
-    wait_args = "polyaxon wait --uuid={} --kind={}".format(
-        run_uuid, get_enum_value(run_kind)
-    )
     image = "polyaxon/polyaxon-init"
     image_tag = clean_version_post_suffix(pkg.VERSION)
     image_pull_policy = PullPolicy.IF_NOT_PRESENT.value
     resources = get_cleaner_resources()
+
     if cleaner:
         image = cleaner.image or image
         image_tag = cleaner.image_tag or image_tag
         image_pull_policy = cleaner.image_pull_policy or image_pull_policy
         resources = cleaner.resources or resources
+
+    # Define environment variables instead of passing commands
+    env = [
+        {"name": "RUN_UUID", "value": run_uuid},
+        {"name": "RUN_KIND", "value": get_enum_value(run_kind)},
+        {"name": "STORE_KIND", "value": store.kind.replace("_", "-")},
+        {"name": "STORE_NAME", "value": store.name},
+        {"name": "SUBPATH", "value": subpath}
+    ]
+
     return k8s_schemas.V1Container(
         name=MAIN_JOB_CONTAINER,
         image="{}:{}".format(image, image_tag),
         image_pull_policy=image_pull_policy,
-        command=["/bin/bash", "-c"],
-        args=["{} && {}".format(wait_args, clean_args)],
+        env=env,
         resources=resources,
     )
 

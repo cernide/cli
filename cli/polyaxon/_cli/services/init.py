@@ -16,12 +16,13 @@ import click
     default=10,
     help="Number of times to retry the process.",
 )
-def wait(uuid: str, kind: str, max_retries: int):
-    """Delete an s3 subpath."""
+def init(uuid: str, kind: str, max_retries: int):
+    """Wait for everything to be ready"""
     from polyaxon import settings
     from polyaxon._k8s.executor.executor import Executor
 
-    executor = Executor(namespace=settings.CLIENT_CONFIG.namespace, in_cluster=True)
+    executor = Executor(
+        namespace=settings.CLIENT_CONFIG.namespace, in_cluster=True)
     retry = 0
     while retry < max_retries:
         if retry:

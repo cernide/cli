@@ -1,0 +1,16 @@
+FROM cernide/cli
+
+LABEL maintainer="Robin Röper <rr@linux.com>"
+
+# Set service type
+ENV POLYAXON_SERVICE=sidecar
+
+# Reset to root
+USER root
+
+# Install the package
+RUN pip install --no-cache-dir dist/*.whl[fs,sidecar,k8s_async]
+
+# Set the user
+RUN groupadd -r nobody && useradd -r -g nobody nobody
+USER nobody

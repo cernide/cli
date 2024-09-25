@@ -123,7 +123,8 @@ class SidecarConverter(_BaseConverter):
             volume_mounts += to_list(
                 cls._get_mount_from_resource(resource=secret), check_none=True
             )
-            env += to_list(cls._get_items_from_secret(secret=secret), check_none=True)
+            env += to_list(cls._get_items_from_secret(secret=secret),
+                           check_none=True)
             env_from += to_list(
                 cls._get_env_from_secret(secret=secret), check_none=True
             )
@@ -144,7 +145,8 @@ class SidecarConverter(_BaseConverter):
             )
         # Add connections catalog env vars information
         env += to_list(
-            cls._get_connections_catalog_env_var(connections=[artifacts_store]),
+            cls._get_connections_catalog_env_var(
+                connections=[artifacts_store]),
             check_none=True,
         )
         env += to_list(

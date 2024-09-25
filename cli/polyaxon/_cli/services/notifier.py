@@ -2,8 +2,6 @@ import click
 
 from clipped.utils.json import orjson_loads
 
-from polyaxon._cli.options import OPTIONS_NAME
-
 
 @click.command()
 @click.option(
@@ -19,7 +17,7 @@ from polyaxon._cli.options import OPTIONS_NAME
     help="The project containing the operation.",
 )
 @click.option("--uuid", help="The run uuid.")
-@click.option(*OPTIONS_NAME["args"], help="The run name.")
+@click.option("--name", help="The run name.")
 @click.option(
     "--kind",
     help="The operation kind.",

@@ -183,7 +183,6 @@ def get_default_notification_container(
         name=MAIN_JOB_CONTAINER,
         image="{}:{}".format(image, image_tag),
         image_pull_policy=image_pull_policy,
-        command=["polyaxon", "notify"],
         args=[
             "{{params.backend.as_arg}}",
             "{{params.owner.as_arg}}",
