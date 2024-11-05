@@ -38,7 +38,6 @@ from polyaxon._runner.converter.types import (
     ResourceRequirements,
     VolumeMount,
 )
-from polyaxon._runner.kinds import RunnerKind
 from polyaxon._schemas.types import (
     V1ArtifactsType,
     V1DockerfileType,
@@ -54,7 +53,6 @@ from polyaxon.exceptions import PolyaxonConverterError, PolyaxonSchemaError
 
 
 class BaseConverter:
-    RUNNER_KIND: RunnerKind = None
     SPEC_KIND: Optional[str] = None
     MAIN_CONTAINER_ID: Optional[str] = None
 
@@ -94,10 +92,6 @@ class BaseConverter:
         return get_resource_name(self.run_uuid)
 
     def is_valid(self):
-        if not self.RUNNER_KIND:
-            raise PolyaxonConverterError(
-                "Please make sure that a converter subclass has a valid RUNNER_KIND"
-            )
         if not self.SPEC_KIND:
             raise PolyaxonConverterError(
                 "Please make sure that a converter subclass has a valid SPEC_KIND"
@@ -188,7 +182,8 @@ class BaseConverter:
         if settings.CLIENT_CONFIG.no_api:
             env += [self._get_env_var(name=ENV_KEYS_NO_API, value=True)]
         if log_level:
-            env += [self._get_env_var(name=ENV_KEYS_LOG_LEVEL, value=log_level)]
+            env += [self._get_env_var(name=ENV_KEYS_LOG_LEVEL,
+                                      value=log_level)]
         proxy_env = self._get_proxy_env_vars(
             settings.AGENT_CONFIG.use_proxy_env_vars_use_in_ops
         )
@@ -238,7 +233,8 @@ class BaseConverter:
         if settings.CLIENT_CONFIG.no_api:
             env.append(self._get_env_var(name=ENV_KEYS_NO_API, value=True))
         if log_level:
-            env.append(self._get_env_var(name=ENV_KEYS_LOG_LEVEL, value=log_level))
+            env.append(self._get_env_var(
+                name=ENV_KEYS_LOG_LEVEL, value=log_level))
         proxy_env = self._get_proxy_env_vars(
             settings.AGENT_CONFIG.use_proxy_env_vars_use_in_ops
         )
@@ -316,14 +312,18 @@ class BaseConverter:
             if not http_proxy:
                 http_proxy = cls._get_proxy_env_var("http_proxy")
             if http_proxy:
-                env_vars += cls._add_proxy_env_var(name="HTTP_PROXY", value=http_proxy)
-                env_vars += cls._add_proxy_env_var(name="http_proxy", value=http_proxy)
+                env_vars += cls._add_proxy_env_var(
+                    name="HTTP_PROXY", value=http_proxy)
+                env_vars += cls._add_proxy_env_var(
+                    name="http_proxy", value=http_proxy)
             no_proxy = cls._get_proxy_env_var("NO_PROXY")
             if not no_proxy:
                 no_proxy = cls._get_proxy_env_var("no_proxy")
             if no_proxy:
-                env_vars += cls._add_proxy_env_var(name="NO_PROXY", value=no_proxy)
-                env_vars += cls._add_proxy_env_var(name="no_proxy", value=no_proxy)
+                env_vars += cls._add_proxy_env_var(
+                    name="NO_PROXY", value=no_proxy)
+                env_vars += cls._add_proxy_env_var(
+                    name="no_proxy", value=no_proxy)
             return env_vars
         return []
 
@@ -336,9 +336,11 @@ class BaseConverter:
         for kv_env_var in kv_env_vars:
             if not kv_env_var or not len(kv_env_var) == 2:
                 raise PolyaxonConverterError(
-                    "Received a wrong a key value env var `{}`".format(kv_env_var)
+                    "Received a wrong a key value env var `{}`".format(
+                        kv_env_var)
                 )
-            env_vars.append(cls._get_env_var(name=kv_env_var[0], value=kv_env_var[1]))
+            env_vars.append(cls._get_env_var(
+                name=kv_env_var[0], value=kv_env_var[1]))
 
         return env_vars
 
@@ -411,10 +413,12 @@ class BaseConverter:
         connections = connections or []
 
         if plugins and plugins.collect_artifacts:
-            env.append(self._get_env_var(name=ENV_KEYS_COLLECT_ARTIFACTS, value=True))
+            env.append(self._get_env_var(
+                name=ENV_KEYS_COLLECT_ARTIFACTS, value=True))
 
         if plugins and plugins.collect_resources:
-            env.append(self._get_env_var(name=ENV_KEYS_COLLECT_RESOURCES, value=True))
+            env.append(self._get_env_var(
+                name=ENV_KEYS_COLLECT_RESOURCES, value=True))
 
         if artifacts_store_name:
             env.append(
@@ -435,7 +439,8 @@ class BaseConverter:
                     self._get_connection_env_var(connection=connection), check_none=True
                 )
             except PolyaxonSchemaError as e:
-                raise PolyaxonConverterError("Error resolving secrets: %s" % e) from e
+                raise PolyaxonConverterError(
+                    "Error resolving secrets: %s" % e) from e
 
         env += self._get_kv_env_vars(kv_env_vars)
         env += self._get_env_vars_from_k8s_resources(
@@ -516,7 +521,8 @@ class BaseConverter:
         volume_names = set()
         if plugins and plugins.collect_artifacts:
             volume_mounts += to_list(
-                cls._get_artifacts_context_mount(read_only=False, run_path=run_path),
+                cls._get_artifacts_context_mount(
+                    read_only=False, run_path=run_path),
                 check_none=True,
             )
             volume_names.add(constants.VOLUME_MOUNT_ARTIFACTS)
@@ -705,7 +711,8 @@ class BaseConverter:
         # Prepare connections that Polyaxon can init automatically
         for init_connection in init_connections:
             if init_connection.connection:
-                connection_spec = connection_by_names.get(init_connection.connection)
+                connection_spec = connection_by_names.get(
+                    init_connection.connection)
                 # Handling ssh with git
                 if (
                     V1ConnectionKind.is_ssh(connection_spec.kind)

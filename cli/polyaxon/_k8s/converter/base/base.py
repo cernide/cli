@@ -20,7 +20,6 @@ from polyaxon._k8s.converter.common.annotations import get_connection_annotation
 from polyaxon._k8s.converter.pod.volumes import get_pod_volumes
 from polyaxon._k8s.replica import ReplicaSpec
 from polyaxon._runner.converter import BaseConverter as _BaseConverter
-from polyaxon._runner.kinds import RunnerKind
 from polyaxon.exceptions import PolyaxonConverterError
 
 
@@ -33,7 +32,6 @@ class BaseConverter(
     MountsMixin,
     _BaseConverter,
 ):
-    RUNNER_KIND = RunnerKind.K8S
     GROUP: Optional[str] = None
     API_VERSION: Optional[str] = None
     PLURAL: Optional[str] = None
@@ -200,7 +198,8 @@ class BaseConverter(
             kv_env_vars=kv_env_vars,
         )
 
-        labels = self.get_labels(version=pkg.VERSION, labels=environment.labels)
+        labels = self.get_labels(
+            version=pkg.VERSION, labels=environment.labels)
         annotations = self.get_annotations(
             annotations=environment.annotations,
             artifacts_store=artifacts_store,
@@ -210,7 +209,8 @@ class BaseConverter(
         )
         return ReplicaSpec(
             volumes=volumes,
-            init_containers=[self._sanitize_container(c) for c in init_containers],
+            init_containers=[self._sanitize_container(
+                c) for c in init_containers],
             sidecar_containers=[
                 self._sanitize_container(c) for c in sidecar_containers
             ],

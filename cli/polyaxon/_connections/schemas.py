@@ -45,7 +45,7 @@ class V1Connection(Connection, BaseTypeConfig):
 
     Using connections you can define the boilerplate required
     to connect a volume, a blob storage once, secret definition for loading data from a data source.
-    Rnd users, e.g. data scientist, can just reference the name of the connection to use it
+    R&D users, e.g. data scientist, can just reference the name of the connection to use it
     without dealing with the configuration every time.
 
     Connections are not required to mount secrets or configurations,

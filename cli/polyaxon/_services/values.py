@@ -27,7 +27,7 @@ class PolyaxonServices(str, PEnum):
     OPERATOR = "operator"
     BILLING = "billing"
     HP_SEARCH = "hp_search"
-    EVENTS_HANDLER = "events_handlers"
+    NOTIFIER = "notifier"
 
     @classmethod
     def agent_values(cls):
@@ -86,5 +86,5 @@ class PolyaxonServices(str, PEnum):
         return cls.GATEWAY == (value or cls.get_service_name())
 
     @classmethod
-    def is_events_handlers(cls, value: Optional[str] = None):
-        return cls.EVENTS_HANDLER == (value or cls.get_service_name())
+    def is_notifier(cls, value: Optional[str] = None):
+        return cls.NOTIFIER == (value or cls.get_service_name())

@@ -1,4 +1,4 @@
-from polyaxon._env_vars.getters.agent import get_agent_info, get_artifacts_store_name
+from polyaxon._env_vars.getters.agent import get_artifacts_store_name
 from polyaxon._env_vars.getters.owner_entity import resolve_entity_info
 from polyaxon._env_vars.getters.project import (
     get_project_error_message,

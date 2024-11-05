@@ -1,14 +1,12 @@
 try:
-    from polyaxon._k8s.agent.async_agent import AsyncAgent
-    from polyaxon._k8s.executor.async_executor import AsyncExecutor
+    from polxaxon._k8s.agent import Agent
+    from polxaxon._k8s.executor import Executor
     from polyaxon._k8s.manager.async_manager import AsyncK8sManager
 except ImportError:
-    AsyncAgent = None
-    AsyncExecutor = None
+    Agent = None
+    Executor = None
     AsyncK8sManager = None
 
-from polyaxon._k8s.agent.agent import Agent
-from polyaxon._k8s.executor.executor import Executor
 from polyaxon._k8s.k8s_schemas import (
     V1Affinity,
     V1ConfigMapKeySelector,

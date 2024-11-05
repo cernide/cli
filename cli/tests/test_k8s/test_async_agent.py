@@ -2,9 +2,9 @@ import pytest
 
 from mock import MagicMock, patch
 
-from polyaxon._k8s.agent.async_agent import AsyncAgent
-from polyaxon._k8s.executor.async_executor import AsyncExecutor
-from polyaxon._runner.agent.client import AgentClient
+from polxaxon._k8s.agent import Agent
+from polxaxon._k8s.executor import Executor
+from polyaxon._k8s.client import Client
 from polyaxon._utils.test_utils import AsyncMock, patch_settings
 
 
@@ -12,14 +12,14 @@ from polyaxon._utils.test_utils import AsyncMock, patch_settings
 @pytest.mark.asyncio
 @pytest.mark.filterwarnings("ignore::RuntimeWarning")
 @patch(
-    "polyaxon._runner.agent.async_agent.BaseAsyncAgent._enter", new_callable=AsyncMock
+    "polyaxon._runner.agent.async_agent.Agent._enter", new_callable=AsyncMock
 )
 async def test_init_agent_component(register):
     patch_settings()
-    agent = AsyncAgent(owner="foo", agent_uuid="uuid")
+    agent = Agent(owner="foo", agent_uuid="uuid")
     assert agent.max_interval == 6
-    assert isinstance(agent.executor, AsyncExecutor)
-    assert isinstance(agent.client, AgentClient)
+    assert isinstance(agent.executor, Executor)
+    assert isinstance(agent.client, Client)
     assert register.call_count == 0
 
 
@@ -31,7 +31,7 @@ async def test_init_agent_component(register):
 @patch("polyaxon._sdk.api.AgentsV1Api.get_agent_state", new_callable=AsyncMock)
 @patch("polyaxon._sdk.api.AgentsV1Api.get_agent", new_callable=AsyncMock)
 @patch(
-    "polyaxon._k8s.executor.async_executor.AsyncExecutor.manager",
+    "polyaxon._k8s.executor.async_executor.Executor.manager",
     new_callable=AsyncMock,
 )
 async def test_init_agent(
@@ -40,11 +40,11 @@ async def test_init_agent(
     patch_settings()
     get_agent.return_value = MagicMock(status=None, live_state=1)
     get_agent_state.return_value = MagicMock(status=None, live_state=1)
-    agent = AsyncAgent(owner="foo", agent_uuid="uuid")
+    agent = Agent(owner="foo", agent_uuid="uuid")
     agent.executor.manager.get_version.return_value = {}
     assert agent.max_interval == 6
     assert agent.executor is not None
-    assert isinstance(agent.client, AgentClient)
+    assert isinstance(agent.client, Client)
     assert get_agent.call_count == 0
     assert get_agent_state.call_count == 0
     assert create_agent_status.call_count == 0
@@ -54,7 +54,7 @@ async def test_init_agent(
     await agent._enter()
     assert agent.max_interval == 6
     assert agent.executor is not None
-    assert isinstance(agent.client, AgentClient)
+    assert isinstance(agent.client, Client)
     assert get_agent.call_count == 1
     assert get_agent_state.call_count == 0
     assert create_agent_status.call_count == 1

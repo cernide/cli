@@ -19,7 +19,6 @@ from polyaxon._connections.schemas import (
 from polyaxon._containers.pull_policy import PullPolicy
 from polyaxon._containers.statuses import ContainerStatuses
 from polyaxon._env_vars.getters import (
-    get_agent_info,
     get_artifacts_store_name,
     get_collect_artifacts,
     get_collect_resources,

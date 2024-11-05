@@ -16,7 +16,6 @@ from polyaxon._env_vars.keys import (
     ENV_KEYS_CERT_FILE,
     ENV_KEYS_CONNECTION_POOL_MAXSIZE,
     ENV_KEYS_DEBUG,
-    ENV_KEYS_DISABLE_ERRORS_REPORTING,
     ENV_KEYS_HEADER,
     ENV_KEYS_HEADER_SERVICE,
     ENV_KEYS_HOST,
@@ -56,22 +55,27 @@ class ClientConfig(BaseSchemaModel):
     _BASE_URL = "{}/api/{}"
 
     host: Optional[StrictStr] = Field(alias=ENV_KEYS_HOST)
-    version: Optional[StrictStr] = Field(default="v1", alias=ENV_KEYS_API_VERSION)
+    version: Optional[StrictStr] = Field(
+        default="v1", alias=ENV_KEYS_API_VERSION)
     debug: Optional[bool] = Field(default=False, alias=ENV_KEYS_DEBUG)
     log_level: Optional[StrictStr] = Field(alias=ENV_KEYS_LOG_LEVEL)
     authentication_type: Optional[StrictStr] = Field(
         default=AuthenticationTypes.TOKEN, alias=ENV_KEYS_AUTHENTICATION_TYPE
     )
-    is_managed: Optional[bool] = Field(default=False, alias=ENV_KEYS_IS_MANAGED)
-    is_offline: Optional[bool] = Field(default=False, alias=ENV_KEYS_IS_OFFLINE)
-    in_cluster: Optional[bool] = Field(default=False, alias=ENV_KEYS_K8S_IN_CLUSTER)
+    is_managed: Optional[bool] = Field(
+        default=False, alias=ENV_KEYS_IS_MANAGED)
+    is_offline: Optional[bool] = Field(
+        default=False, alias=ENV_KEYS_IS_OFFLINE)
+    in_cluster: Optional[bool] = Field(
+        default=False, alias=ENV_KEYS_K8S_IN_CLUSTER)
     no_op: Optional[bool] = Field(default=False, alias=ENV_KEYS_NO_OP)
     timeout: Optional[float] = Field(default=20, alias=ENV_KEYS_TIMEOUT)
     tracking_timeout: Optional[float] = Field(
         default=1, alias=ENV_KEYS_TRACKING_TIMEOUT
     )
     timezone: Optional[StrictStr] = Field(alias=ENV_KEYS_TIME_ZONE)
-    watch_interval: Optional[int] = Field(default=5, alias=ENV_KEYS_WATCH_INTERVAL)
+    watch_interval: Optional[int] = Field(
+        default=5, alias=ENV_KEYS_WATCH_INTERVAL)
     interval: Optional[float] = Field(default=5, alias=ENV_KEYS_INTERVAL)
     verify_ssl: Optional[bool] = Field(alias=ENV_KEYS_VERIFY_SSL)
     ssl_ca_cert: Optional[StrictStr] = Field(alias=ENV_KEYS_SSL_CA_CERT)
@@ -92,9 +96,6 @@ class ClientConfig(BaseSchemaModel):
     )
     namespace: Optional[StrictStr] = Field(alias=ENV_KEYS_K8S_NAMESPACE)
     no_api: Optional[bool] = Field(default=False, alias=ENV_KEYS_NO_API)
-    disable_errors_reporting: Optional[bool] = Field(
-        default=False, alias=ENV_KEYS_DISABLE_ERRORS_REPORTING
-    )
     compatibility_check_interval: Optional[int] = Field(
         alias=ENV_KEYS_INTERVALS_COMPATIBILITY_CHECK
     )
@@ -114,7 +115,8 @@ class ClientConfig(BaseSchemaModel):
         **data
     ):
         host = (
-            clean_host(host or LOCALHOST) if not use_cloud_host else POLYAXON_CLOUD_HOST
+            clean_host(
+                host or LOCALHOST) if not use_cloud_host else POLYAXON_CLOUD_HOST
         )
         super().__init__(host=host, **data)
         self.retries = retries if not use_cloud_host else 0
@@ -129,19 +131,22 @@ class ClientConfig(BaseSchemaModel):
         return self._BASE_URL.format(clean_host(self.host), self.version)
 
     def set_cli_header(self) -> None:
-        self.header = PolyaxonServiceHeaders.get_header(PolyaxonServiceHeaders.SERVICE)
+        self.header = PolyaxonServiceHeaders.get_header(
+            PolyaxonServiceHeaders.SERVICE)
         self.header_service = VERSION
         self.client_header["header_name"] = self.header
         self.client_header["header_value"] = self.header_service
 
     def set_agent_header(self) -> None:
-        self.header = PolyaxonServiceHeaders.get_header(PolyaxonServiceHeaders.SERVICE)
+        self.header = PolyaxonServiceHeaders.get_header(
+            PolyaxonServiceHeaders.SERVICE)
         self.header_service = PolyaxonServices.AGENT
         self.client_header["header_name"] = self.header
         self.client_header["header_value"] = self.header_service
 
     def get_internal_header(self) -> Dict:
-        header = PolyaxonServiceHeaders.get_header(PolyaxonServiceHeaders.INTERNAL)
+        header = PolyaxonServiceHeaders.get_header(
+            PolyaxonServiceHeaders.INTERNAL)
         return {"header_name": header, "header_value": self.header_service}
 
     def get_full_headers(self, headers=None, auth_key="Authorization") -> Dict:
@@ -151,7 +156,8 @@ class ClientConfig(BaseSchemaModel):
 
         if auth_key not in request_headers and self.token:
             request_headers.update(
-                {auth_key: "{} {}".format(self.authentication_type, self.token)}
+                {auth_key: "{} {}".format(
+                    self.authentication_type, self.token)}
             )
         if self.header and self.header_service:
             request_headers.update({self.header: self.header_service})

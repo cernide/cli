@@ -1,7 +1,7 @@
 import pytest
 
 from polyaxon._flow.run.enums import V1RunKind
-from polyaxon._k8s.executor.async_executor import AsyncExecutor
+from polxaxon._k8s.executor import Executor
 from polyaxon._utils.test_utils import AsyncMock
 from polyaxon.exceptions import PolyaxonAgentError
 
@@ -9,7 +9,7 @@ from polyaxon.exceptions import PolyaxonAgentError
 @pytest.mark.asyncio
 @pytest.mark.filterwarnings("ignore::RuntimeWarning")
 async def test_start_apply_stop_get_raises_for_non_recognized_kinds():
-    executor = AsyncExecutor()
+    executor = Executor()
 
     try:
         await executor.create(run_uuid="", run_kind="foo", resource={})
@@ -41,7 +41,7 @@ async def test_start_apply_stop_get():
         get_custom_object = AsyncMock()
         delete_custom_object = AsyncMock()
 
-    executor = AsyncExecutor()
+    executor = Executor()
     k8s_manager.create_custom_object.return_value = ("", "")
     executor._manager = k8s_manager
 
